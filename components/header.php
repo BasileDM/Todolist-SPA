@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg p-3" style="background-color: #7175eb;">
+<nav class="navbar navbar-expand-lg bg-primary">
     <div class="container-fluid">
+        <img src="../assets/imgs/logo.svg" alt="Logo" width="60" height="48">
         <a class="navbar-brand" href="#">
-            <img src="../assets/imgs/logo.svg" alt="Logo" width="30" height="24">
-            TodoList
+            <h2>TodoList</h2>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-dark" type="submit" style="color: white;">Search</button>
             </form>
         </div>
     </div>

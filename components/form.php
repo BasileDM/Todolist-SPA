@@ -8,23 +8,25 @@
         <h5 class="card-title">Add a new task</h5>
         <div class="mb-3">
             <label for="taskTitle" class="form-label">Task title</label>
-            <input type="text" class="form-control" id="taskTitle" placeholder="Task title here...">
+            <input type="text" class="form-control" id="taskTitle" placeholder="Task title here..." data-bs-theme="light">
         </div>
         <div class="mb-3">
-            <label for="taskDescription" class="form-label">Task description</label>
-            <input type="text" class="form-control" id="taskDescription" placeholder="Task description here...">
+            <label for="taskDescription" class="form-label">Description</label>
+            <input type="text" class="form-control" id="taskDescription" placeholder="Task description here..." data-bs-theme="light">
         </div>
-        <div class="mb-3">
-            <label for="taskDueDate" class="form-label">Task due date</label>
-            <input type="date" class="form-control" id="taskDueDate">
-        </div>
-        <div class="mb-3">
-            <label for="taskPriority" class="form-label">Task priority</label>
-            <select class="form-control" id="taskPriority">
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
-            </select>
+        <div class="d-flex flex-row">
+            <div class="mb-3">
+                <label for="taskDueDate" class="form-label">Due date</label>
+                <input type="date" class="form-control" id="taskDueDate" data-bs-theme="dark">
+            </div>
+            <div class="mb-3">
+                <label for="taskPriority" class="form-label">Priority</label>
+                <select class="form-control" id="taskPriority" data-bs-theme="dark">
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </select>
+            </div>
         </div>
         <button type="submit" class="btn btn-success">Add task</button>
     </div>
