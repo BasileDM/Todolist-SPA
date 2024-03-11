@@ -8,24 +8,22 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Tasks actions
+                        My account
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item btn-danger" href="#">Delete selected</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item btn-success" href="#">Validate selected</a></li>
+                        <li><a class="dropdown-item bg-danger" href="#">Log off</a></li>
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-dark" type="submit" style="color: white;">Search</button>
-            </form>
+            <button type="button" class="btn btn-success m-1">Log in</button>
+            <button type="button" class="btn btn-success">Sign up</button>
         </div>
     </div>
 </nav>
