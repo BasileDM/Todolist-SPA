@@ -19,10 +19,10 @@ session_start();
     ?>
     <main>
         <?php
-            if (isset($_GET['page']) 
-            && $_GET['page'] == 'list' 
-            && isset($_SESSION['connected']) 
-            && $_SESSION['connected'] == true)
+            if (isset($_SESSION['connected']) 
+            && $_SESSION['connected'] == true
+            && isset($_SESSION['username'])
+            && !empty($_SESSION['username']))
             {
                 include './components/app.php';
 
