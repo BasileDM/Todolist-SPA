@@ -5,7 +5,7 @@
 </p>
 <div class="collapse" id="collapseExample">
     <div class="card card-body">
-        <h5 class="card-title">Add a new task</h5>
+        <h5 class="card-title">New task</h5>
         <div class="mb-3">
             <label for="taskTitle" class="form-label">Task title</label>
             <input type="text" class="form-control" id="taskTitle" placeholder="Task title here..." data-bs-theme="light">

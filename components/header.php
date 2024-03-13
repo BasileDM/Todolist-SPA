@@ -8,22 +8,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        My account
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item bg-danger" href="#">Log off</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <button type="button" class="btn btn-secondary m-1 ms-auto">Settings</button>
+            <button type="button" class="btn btn-danger m-1">Log out</button>
             <button type="button" class="btn btn-success m-1">Log in</button>
-            <button type="button" class="btn btn-success">Sign up</button>
+            <button type="button" class="btn btn-success m-1">Sign up</button>
         </div>
     </div>
 </nav>
