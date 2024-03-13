@@ -19,14 +19,19 @@ session_start();
     ?>
     <main>
         <?php
-        if (isset($_GET['page']) && $_GET['page'] == 'list') {
-            include './components/list-app.php';
-        } else {
-            include './components/signup-section.html';
-        }
+            if (isset($_GET['page']) 
+            && $_GET['page'] == 'list' 
+            && isset($_SESSION['connected']) 
+            && $_SESSION['connected'] == true)
+            {
+                include './components/app.php';
 
-        include './components/modals/login-modal.html';
-        include './components/modals/settings-modal.html';
+            } else {
+                include './components/signup-section.html';
+            }
+
+            include './components/modals/login-modal.html';
+            include './components/modals/settings-modal.html';
         ?>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
