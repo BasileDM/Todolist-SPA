@@ -18,24 +18,9 @@ session_start();
     include './components/header.php';
     ?>
     <main>
-        <?php
-            if (isset($_SESSION['connected']) 
-            && $_SESSION['connected'] == true
-            && isset($_SESSION['username'])
-            && !empty($_SESSION['username']))
-            {
-                include './components/app.php';
-
-            } else {
-                include './components/signup-section.html';
-            }
-
-            include './components/modals/login-modal.html';
-            include './components/modals/settings-modal.html';
-        ?>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="./assets/script.js"></script>
+    <script src="./assets/app.js"></script>
 </body>
 
 </html>

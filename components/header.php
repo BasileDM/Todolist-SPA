@@ -9,14 +9,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <?php
-                    if (isset($_SESSION['connected']) && $_SESSION['connected'] == true) {
-                ?>
-                    <button type="button" class="btn btn-secondary m-1 ms-auto" data-bs-toggle="modal" data-bs-target="#settings-modal"">Settings</button>
-                    <button type="button" class="btn btn-danger m-1">Log out</button>
-                <?php } else { ?>
-                    <button type="button" class="btn btn-success m-1 ms-auto" data-bs-toggle="modal" data-bs-target="#login-modal">Log in</button>
-                <?php } ?>
+                
             </div>
         </div>
     </nav>
