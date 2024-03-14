@@ -19,19 +19,18 @@ session_start();
     ?>
     <main>
         <?php
-            if (isset($_SESSION['connected']) 
+        if (
+            isset($_SESSION['connected'])
             && $_SESSION['connected'] == true
             && isset($_SESSION['username'])
-            && !empty($_SESSION['username']))
-            {
-                include './components/app.php';
-
-            } else {
-                include './components/signup-section.html';
-            }
-
-            include './components/modals/login-modal.html';
+            && !empty($_SESSION['username'])
+        ) {
+            include './components/app.php';
             include './components/modals/settings-modal.html';
+        } else {
+            include './components/signup-section.html';
+            include './components/modals/login-modal.html';
+        }
         ?>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
