@@ -1,34 +1,11 @@
-const mainElement = document.querySelector("main");
-const navbarContent = document.getElementById("navbarSupportedContent");
-
-function checkAuthStatus() {
-    fetch("./../src/checkAuth.php", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Backend response was not ok.");
-            } else {
-                return response.text();
-            }
-        })
-        .then((data) => {
-            if (data === "true") {
-                displayPage("app");
-            } else {
-                displayPage("home");
-            }
-        });
-}
-
 function displayPage(page) {
-    // Switch component path
+
+    const mainElement = document.querySelector("main");
+    const navbarContent = document.getElementById("navbarSupportedContent");
     let componentPath;
     let navbarButtons;
 
+    // Switch component path
     switch (page) {
         case "app":
             componentPath = "./../components/app.php";
@@ -43,7 +20,7 @@ function displayPage(page) {
     }
     navbarContent.innerHTML = navbarButtons;
 
-    // Fetch component
+    // Fetch component for main
     fetch(componentPath, {
         method: "GET",
         headers: {
@@ -52,7 +29,7 @@ function displayPage(page) {
     })
         .then((response) => {
             if (!response.ok) {
-                throw new Error("app component not found.");
+                throw new Error("App component not found.");
             } else {
                 return response.text();
             }
@@ -61,8 +38,3 @@ function displayPage(page) {
             mainElement.innerHTML = data;
         });
 }
-
-// App initialization
-document.addEventListener("DOMContentLoaded", function () {
-    checkAuthStatus();
-});
