@@ -2,7 +2,7 @@
     <h2>Task list :</h2>
     <button id="myButton" type="button" class="list-group-item list-group-item-action d-flex justify-content-between" aria-current="true">
         <div>
-            <span class="badge text-bg-secondary">New</span>
+            <span class="badge text-bg-success">New</span>
             First button
         </div>
         <div class="form-check form-check-reverse form-check-inline">
