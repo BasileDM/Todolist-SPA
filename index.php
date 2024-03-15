@@ -3,7 +3,9 @@ require_once 'src/init.php';
 
 $userRepo = new UserRepository();
 $user = $userRepo->getUserByMail("admin@admin.admin");
-var_dump($user);
+$pass = 'admin';
+$result = password_verify($pass, $user->PASSWORD);
+var_dump($result);
 
 ?>
 

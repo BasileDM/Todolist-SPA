@@ -18,7 +18,7 @@ CREATE TABLE todolist_users(
 )ENGINE=InnoDB;
 
 INSERT INTO `todolist_users` (`ID`, `LAST_NAME`, `FIRST_NAME`, `PASSWORD`, `MAIL`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin@admin.admin');
+(1, 'admin', 'admin', '$2y$10$G9jHKu477jlO2agttc.XPOv6tWcaiB9hB7pxNDsLRQPeq0ecCL7Yy', 'admin@admin.admin');
 
 #------------------------------------------------------------
 # Table: Priority

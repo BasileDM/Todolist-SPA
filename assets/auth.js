@@ -38,15 +38,25 @@ function login() {
             if (!response.ok || response.status !== 200) {
                 throw new Error("Backend response failed.");
             } else {
-                return response.json();
+                return response.text();
             }
         })
         .then((data) => {
-            console.log(data);
+            if (data === "true") {
+                displayPage("app");
+            } else {
+                console.log(data);
+                displayError(data);
+            }
         })
         .catch((error) => {
             console.error("Error:", error);
         });
+}
+
+function displayError(message) {
+    const errorElement = document.getElementById("error-message");
+    errorElement.textContent = message;
 }
 
 // App initialization

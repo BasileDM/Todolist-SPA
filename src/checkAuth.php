@@ -5,6 +5,6 @@ if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
     echo 'true';
     exit();
 } else {
-    echo 'true';
+    echo 'false';
     exit();
 }
