@@ -17,6 +17,8 @@ CREATE TABLE todolist_users(
 	,CONSTRAINT PK_todolist_users PRIMARY KEY (ID)
 )ENGINE=InnoDB;
 
+INSERT INTO `todolist_users` (`ID`, `LAST_NAME`, `FIRST_NAME`, `PASSWORD`, `MAIL`) VALUES
+(1, 'admin', 'admin', 'admin', 'admin@admin.admin');
 
 #------------------------------------------------------------
 # Table: Priority
@@ -70,4 +72,3 @@ CREATE TABLE todolist_relation_tasks_categories(
 	,CONSTRAINT FK_AVOIR_todolist_categories FOREIGN KEY (ID) REFERENCES todolist_categories(ID)
 	,CONSTRAINT FK_AVOIR_todolist_tasks0 FOREIGN KEY (ID_TASK) REFERENCES todolist_tasks(ID)
 )ENGINE=InnoDB;
-

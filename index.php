@@ -1,6 +1,10 @@
 <?php
 require_once 'src/init.php';
 
+$userRepo = new UserRepository();
+$user = $userRepo->getUserByMail("admin@admin.admin");
+var_dump($user);
+
 ?>
 
 <!DOCTYPE html>

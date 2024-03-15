@@ -37,7 +37,7 @@ final class Database {
         }
     }
 
-    public function DbInitialization() {
+    public function initializeDb() {
         if ($this->doesUsersTableExist()) {
             return "Database seems to be already initialized.";
             die();
