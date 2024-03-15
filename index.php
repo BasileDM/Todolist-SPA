@@ -1,3 +1,8 @@
+<?php
+require_once 'src/init.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
