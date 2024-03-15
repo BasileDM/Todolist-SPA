@@ -14,8 +14,10 @@ function checkAuthStatus() {
         })
         .then((data) => {
             if (data === "true") {
+                console.log(data);
                 displayPage("app");
             } else {
+                console.log(data);
                 displayPage("home");
             }
         });
@@ -52,6 +54,28 @@ function login() {
         .catch((error) => {
             console.error("Error:", error);
         });
+}
+
+function logout() {
+    fetch("/../src/disconnect.php", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    }).then((response) => {
+        if (!response.ok || response.status !== 200) {
+            throw new Error("Backend response failed.");
+        } else {
+            displayPage("home");
+            return response.text();
+        }
+    })
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
 }
 
 function displayError(message) {

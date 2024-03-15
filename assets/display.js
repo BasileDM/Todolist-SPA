@@ -1,5 +1,4 @@
 function displayPage(page) {
-
     const mainElement = document.querySelector("main");
     const navbarContent = document.getElementById("navbarSupportedContent");
     let componentPath;
@@ -10,7 +9,7 @@ function displayPage(page) {
         case "app":
             componentPath = "./../components/app.php";
             navbarButtons =
-                '<button type="button" class="btn btn-secondary m-1 ms-auto" data-bs-toggle="modal" data-bs-target="#settings-modal"">Settings</button><button type="button" class="btn btn-danger m-1">Log out</button>';
+                '<button type="button" class="btn btn-secondary m-1 ms-auto" data-bs-toggle="modal" data-bs-target="#settings-modal"">Settings</button><button type="button" class="btn btn-danger m-1" onclick="logout()">Log out</button>';
             break;
         case "home":
             componentPath = "./../components/signup-section.html";

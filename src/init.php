@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION['connected'])) {
+    $_SESSION['connected'] = false;
+    $_SESSION['user'] = null;
+}
 
 function loadClasses($filename) {
     if(file_exists(__DIR__ . "/classes/" . $filename . ".php")) {

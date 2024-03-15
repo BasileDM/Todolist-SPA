@@ -1,11 +1,8 @@
 <?php
-require_once 'src/init.php';
+session_start();
 
-$userRepo = new UserRepository();
-$user = $userRepo->getUserByMail("admin@admin.admin");
-$pass = 'admin';
-$result = password_verify($pass, $user->PASSWORD);
-var_dump($result);
+require_once 'src/init.php';
+// var_dump($_SESSION);
 
 ?>
 
