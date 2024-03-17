@@ -1,11 +1,10 @@
-<div class="modal" tabindex="-1" id="login-modal">
+<div class="modal fade" tabindex="-1" id="login-modal" data-bs-keyboard="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Log in</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
             <div class="modal-body">
                 <form>
                     <div class="mb-3">
@@ -16,41 +15,40 @@
                         <label for="inputPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="inputLoginPassword" />
                     </div>
-                    <div id="login-modal-error-ctn" style="color: red;" class="m-2"></div>
+                    <div class="alert alert-danger d-none p-2" role="alert" id="login-modal-error-ctn"></div>
                     <button type="button" class="btn btn-primary" id="login-button" onclick="login()">Log in</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
-
 <div class="m-5">
     <h4>Please log in or register before using the app.</h4>
     <p class="mt-4">Already have an account ? <a href="#" data-bs-toggle="modal" data-bs-target="#login-modal">Log in</a></p>
     <form>
-        <div class="mb-3">
-            <label for="inputLastName" class="form-label">Last name*</label>
-            <input type="text" class="form-control" id="inputLastName" min="3" max="50" required/>
+        <div class="mb-3 form-floating">
+            <input type="text" class="form-control" id="inputLastName" min="3" max="50" placeholder="Last name" onchange="checkField('inputLastName')" required/>
+            <label for="inputLastName">Last name*</label>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 form-floating">
+            <input type="text" class="form-control" id="inputFirstName" min="3" max="50" placeholder="First name" onchange="checkField('inputFirstName')"/>
             <label for="inputFirstName" class="form-label">First name</label>
-            <input type="text" class="form-control" id="inputFirstName" min="3" max="50"/>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 form-floating">
+            <input type="email" class="form-control" id="inputMail" min="3" max="80" placeholder="Email" onchange="checkField('inputMail')" required/>
             <label for="inputMail" class="form-label">Email address*</label>
-            <input type="email" class="form-control" id="inputMail" min="3" max="80" required/>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 form-floating">
+            <input type="password" class="form-control" id="inputPassword" min="7" max="99" placeholder="Password" onchange="checkField('inputPassword')" required/>
             <label for="inputPassword" class="form-label">Password*</label>
-            <input type="password" class="form-control" id="inputPassword" min="7" required/>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 form-floating">
+            <input type="password" class="form-control" id="inputPasswordConfirm" min="7" max="99" placeholder="Confirm password" onchange="checkField('inputPasswordConfirm')" required/>
             <label for="inputPasswordConfirm" class="form-label">Confirm your password*</label>
-            <input type="password" class="form-control" id="inputPasswordConfirm"  min="7" required/>
         </div>
         <p>Fields with * are required.</p>
-        <button type="submit" class="btn btn-primary">Sign up !</button>
+        <button type="submit" class="btn btn-primary disabled" id="signup-button">Sign up !</button>
     </form>
 </div>
+

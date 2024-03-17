@@ -3,8 +3,10 @@ session_start();
 require_once __DIR__ . '/repositories/UserRepository.php';
 require_once __DIR__ . '/classes/Database.php';
 
-if (!empty(file_get_contents('php://input'))) {
-    $request = json_decode(file_get_contents('php://input'));
+
+$request = json_decode(file_get_contents('php://input'));
+
+if (!empty($request->email) && !empty($request->password)) {
     $sentMail = $request->email;
     $sentPass = $request->password;
 
@@ -42,6 +44,6 @@ if (!empty(file_get_contents('php://input'))) {
     }
 } else {
     header('Content-Type: application/json');
-    echo json_encode('No data');
+    echo json_encode("empty");
     die();
 }

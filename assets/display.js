@@ -35,12 +35,19 @@ function displayPage(page) {
         })
         .then((data) => {
             mainElement.innerHTML = data;
+            mainElement.insertAdjacentHTML("beforeend", "<script src='/assets/form-checker.js'></script>");
         });
 }
 
 function displayError(message, errorContainer) {
-    const errorElement = document.getElementById(errorContainer);
+    let errorElement = document.getElementById(errorContainer);
+    errorElement.classList.remove("d-none");
     errorElement.textContent = message;
+
+    let loginModalElement = document.getElementById("login-modal");
+    loginModalElement.addEventListener("hidden.bs.modal", function () {
+        document.getElementById("login-modal-error-ctn").classList.add("d-none");
+    })
 }
 
 function displayToast(title, message, type) {

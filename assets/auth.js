@@ -26,7 +26,7 @@ function login() {
     const password = document.getElementById("inputLoginPassword").value;
     const loginModalElement = document.getElementById("login-modal");
     const loginModal = bootstrap.Modal.getInstance(loginModalElement);
-
+    
     fetch("/src/authentication.php", {
         method: "POST",
         headers: {
@@ -45,13 +45,24 @@ function login() {
             }
         })
         .then((data) => {
-            if (data === "true") { 
-                loginModal.hide();
-                displayPage("app");
-                displayToast('Connection successful !', 'You are now logged in.', 'success')
-            } else {
-                displayError("Wrong mail or password.", 'login-modal-error-ctn');
-                displayToast('Connection failed !', 'An error has occured.', 'error')
+            switch (data) {
+                case "true":
+                    loginModal.hide();
+                    displayPage("app");
+                    displayToast('Connection successful !', 'You are now logged in.', 'success')
+                    break;
+                case "false":
+                    displayError("Wrong mail or password.", 'login-modal-error-ctn');
+                    displayToast('Connection failed !', 'An error has occured.', 'error')
+                    break;
+                case '"empty"':
+                    displayError("Please fill in all the fields.", 'login-modal-error-ctn');
+                    displayToast('Connection failed !', 'An error has occured.', 'error')
+                    break;
+                default:
+                    displayError("Wrong mail or password.", 'login-modal-error-ctn');
+                    displayToast('Connection failed !', 'An error has occured.', 'error')
+                    break;
             }
         })
         .catch((error) => {
@@ -67,23 +78,18 @@ function logout() {
         },
     }).then((response) => {
         if (!response.ok || response.status !== 200) {
-            throw new Error("Backend response failed.");
             displayToast('Backend error', 'Please try again later.', 'error')
+            throw new Error("Backend response failed.");
         } else {
             displayPage("home");
             displayToast('Logout successful', 'You are now logged out.', 'success')
             return response.text();
         }
     })
-    .then((data) => {
-        console.log(data);
-    })
     .catch((error) => {
         console.error("Error:", error);
     });
 }
-
-
 
 // App initialization
 document.addEventListener("DOMContentLoaded", function () {
