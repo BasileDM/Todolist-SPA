@@ -29,7 +29,7 @@ if (!empty(file_get_contents('php://input'))) {
     $passCheckResult = password_verify($sentPass, $storedPass);
     if ($passCheckResult) {
         $_SESSION['connected'] = true;
-        $_SESSION['user'] = $user->FIRST_NAME;
+        $_SESSION['user'] = $user->MAIL;
 
         header('Content-Type: application/json');
         echo json_encode(true);
