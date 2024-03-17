@@ -19,7 +19,8 @@ final class Database {
             $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME;
             $this->connection = new \PDO($dsn, DB_USER, DB_PASS);
         } catch (\PDOException $error) {
-            echo "Connection failed: " . $error->getMessage();
+            echo '<script type="text/javascript">displayToast("Database error", "Couldn\'t connect to the database.", "error");</script>';
+            die();
         }
     }
 

@@ -8,8 +8,16 @@ if (!empty(file_get_contents('php://input'))) {
     $sentMail = $request->email;
     $sentPass = $request->password;
 
-    $userRepo = new UserRepository();
-    $user = $userRepo->getUserByMail($sentMail);
+    try {
+        $userRepo = new UserRepository();
+        $user = $userRepo->getUserByMail($sentMail);
+    } catch (\Exception $error) {
+        header('Content-Type: application/json');
+        echo json_encode($error->getMessage());
+        die();
+    }
+
+
 
     if(!$user) {
         header('Content-Type: x-www-form-urlencoded');
@@ -35,4 +43,5 @@ if (!empty(file_get_contents('php://input'))) {
 } else {
     header('Content-Type: application/json');
     echo json_encode('No data');
+    die();
 }

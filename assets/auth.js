@@ -14,10 +14,8 @@ function checkAuthStatus() {
         })
         .then((data) => {
             if (data === "true") {
-                console.log(data);
                 displayPage("app");
             } else {
-                console.log(data);
                 displayPage("home");
             }
         });
@@ -26,6 +24,9 @@ function checkAuthStatus() {
 function login() {
     const email = document.getElementById("inputLoginEmail").value;
     const password = document.getElementById("inputLoginPassword").value;
+    const loginModalElement = document.getElementById("login-modal");
+    const loginModal = bootstrap.Modal.getInstance(loginModalElement);
+
     fetch("/src/authentication.php", {
         method: "POST",
         headers: {
@@ -44,11 +45,13 @@ function login() {
             }
         })
         .then((data) => {
-            if (data === "true") {
+            if (data === "true") { 
+                loginModal.hide();
                 displayPage("app");
+                displayToast('Connection successful !', 'You are now logged in.', 'success')
             } else {
-                console.log(data);
-                displayError(data);
+                displayError("Wrong mail or password.", 'login-modal-error-ctn');
+                displayToast('Connection failed !', 'An error has occured.', 'error')
             }
         })
         .catch((error) => {
@@ -65,8 +68,10 @@ function logout() {
     }).then((response) => {
         if (!response.ok || response.status !== 200) {
             throw new Error("Backend response failed.");
+            displayToast('Backend error', 'Please try again later.', 'error')
         } else {
             displayPage("home");
+            displayToast('Logout successful', 'You are now logged out.', 'success')
             return response.text();
         }
     })
@@ -78,10 +83,7 @@ function logout() {
     });
 }
 
-function displayError(message) {
-    const errorElement = document.getElementById("error-message");
-    errorElement.textContent = message;
-}
+
 
 // App initialization
 document.addEventListener("DOMContentLoaded", function () {
