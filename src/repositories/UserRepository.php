@@ -15,7 +15,7 @@ class UserRepository {
             $newUser->getLastName(),
             $newUser->getFirstName(),
             $newUser->getMail(),
-            $newUser->getPassword()
+            password_hash($newUser->getPassword(), PASSWORD_DEFAULT)
         ]);
     }
 

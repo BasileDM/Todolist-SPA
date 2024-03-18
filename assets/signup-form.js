@@ -206,6 +206,10 @@ function signup() {
                         displayToast("Signup Error", "Invalid email format.", "error");
                         displaySignupError("Invalid email format", "inputMail");
                         break;
+                    case "Error: 5":
+                        displayToast("Signup Error", "Email already in use.", "error");
+                        displaySignupError("Email already in use", "inputMail");
+                        break;
                     case "success":
                         displayToast("Account created !", "You can now log in.", "success");
                         break;

@@ -31,9 +31,13 @@ if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
-$newUser = new User($lastName, $firstName, $mail, $password);
-
 $userRepository = new UserRepository();
+if ($userRepository->getUserByMail($mail)) {
+    echo 'Error: 5';
+    exit();
+}
+
+$newUser = new User($lastName, $firstName, $mail, $password);
 try {
     $userRepository->create($newUser);
     echo 'success';
