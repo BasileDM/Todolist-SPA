@@ -8,14 +8,14 @@ class UserRepository {
         $this->dbConnection = $database->getConnection();
     }
 
-    public function createUser($lastName, $firstName, $mail, $password) {
-        $sql = "INSERT INTO todolist_users (LAST_NAME, FIRST_NAME, MAIL, PASSWORD) VALUES (:lastName, :firstName, :mail, :password)";
+    public function create($newUser) {
+        $sql = "INSERT INTO todolist_users (LAST_NAME, FIRST_NAME, MAIL, PASSWORD) VALUES (?, ?, ?, ?)";
         $statement = $this->dbConnection->prepare($sql);
         $statement->execute([
-            ':lastName' => $lastName,
-            ':firstName' => $firstName,
-            ':mail' => $mail,
-            ':password' => password_hash($password, PASSWORD_DEFAULT)
+            $newUser->getLastName(),
+            $newUser->getFirstName(),
+            $newUser->getMail(),
+            $newUser->getPassword()
         ]);
     }
 

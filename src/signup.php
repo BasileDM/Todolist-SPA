@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/repositories/UserRepository.php';
+require_once __DIR__ . '/classes/User.php';
 require_once __DIR__ . '/classes/Database.php';
 
 $request = json_decode(file_get_contents('php://input'));
@@ -30,9 +31,11 @@ if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
+$newUser = new User($lastName, $firstName, $mail, $password);
+
 $userRepository = new UserRepository();
 try {
-    $userRepository->createUser($lastName, $firstName, $mail, $password);
+    $userRepository->create($newUser);
     echo 'success';
 } catch (Exception $e) {
     echo $e->getMessage();

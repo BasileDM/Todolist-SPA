@@ -210,7 +210,7 @@ function signup() {
                         displayToast("Account created !", "You can now log in.", "success");
                         break;
                     default:
-                        console.log(data);
+                        console.log("Unknown error: " + data);
                         break;
                 }
             });
