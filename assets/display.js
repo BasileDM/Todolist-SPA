@@ -50,6 +50,14 @@ function displayError(message, errorContainer) {
     })
 }
 
+function displaySignupError(message, fieldId) {
+    if (!document.getElementById(`${fieldId}-error-ctn`)) {
+        const errorContainer = `<div class="alert alert-danger p-2 mt-2" role="alert" id="${fieldId}-error-ctn"></div>`;
+        document.getElementById(fieldId).insertAdjacentHTML("afterend", errorContainer);
+    }
+    document.getElementById(`${fieldId}-error-ctn`).textContent = message;
+}
+
 function displayToast(title, message, type) {
     const toastElement = document.getElementById("toast");
     switch (type) {
