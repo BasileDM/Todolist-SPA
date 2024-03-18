@@ -195,7 +195,19 @@ function signup() {
                         displayToast("Signup Error", "Please fill in all the fields.", "error");
                         break;
                     case "Error: 2":
+                        displayToast("Signup Error", "Password too short.", "error");
+                        displaySignupError("Password too short", "inputPassword");
+                        break;
+                    case "Error: 3":
                         displayToast("Signup Error", "Passwords don't match.", "error");
+                        displaySignupError("Passwords don't match", "inputPasswordConfirm");
+                        break;
+                    case "Error: 4":
+                        displayToast("Signup Error", "Invalid email format.", "error");
+                        displaySignupError("Invalid email format", "inputMail");
+                        break;
+                    case "success":
+                        displayToast("Account created !", "You can now log in.", "success");
                         break;
                     default:
                         console.log(data);

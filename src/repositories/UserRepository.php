@@ -8,12 +8,12 @@ class UserRepository {
         $this->dbConnection = $database->getConnection();
     }
 
-    public function createUser($firstName, $lastName, $mail, $password) {
-        $sql = "INSERT INTO todolist_users (firstName, lastName, mail, password) VALUES (:firstName, :lastName, :mail, :password)";
+    public function createUser($lastName, $firstName, $mail, $password) {
+        $sql = "INSERT INTO todolist_users (LAST_NAME, FIRST_NAME, MAIL, PASSWORD) VALUES (:lastName, :firstName, :mail, :password)";
         $statement = $this->dbConnection->prepare($sql);
         $statement->execute([
-            ':firstName' => $firstName,
             ':lastName' => $lastName,
+            ':firstName' => $firstName,
             ':mail' => $mail,
             ':password' => password_hash($password, PASSWORD_DEFAULT)
         ]);

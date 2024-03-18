@@ -1,5 +1,9 @@
 <?php
+require_once __DIR__ . '/repositories/UserRepository.php';
+require_once __DIR__ . '/classes/Database.php';
+
 $request = json_decode(file_get_contents('php://input'));
+
 $lastName = htmlspecialchars($request->lastName);
 $firstName = htmlspecialchars($request->firstName);
 $mail = $request->mail;
@@ -11,13 +15,25 @@ if (empty($lastName) || empty($mail) || empty($password) || empty($passwordConfi
     exit();
 }
 
-if ($password !== $passwordConfirm) {
-    echo 'Error: passwords do not match';
+if (strlen($password) < 7) {
+    echo 'Error: 2';
     exit();
 }
 
-$password = password_hash($password, PASSWORD_DEFAULT);
+if ($password !== $passwordConfirm) {
+    echo 'Error: 3';
+    exit();
+}
 
-$response = json_encode(array('firstName' => $firstName, 'lastName' => $lastName, 'mail' => $mail, 'password' => $password));
+if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+    echo 'Error: 4';
+    exit();
+}
 
-echo $response;
+$userRepository = new UserRepository();
+try {
+    $userRepository->createUser($lastName, $firstName, $mail, $password);
+    echo 'success';
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
