@@ -195,18 +195,30 @@ function signup() {
                         displayToast("Signup Error", "Please fill in all the fields.", "error");
                         break;
                     case "Error: 2":
-                        displayToast("Signup Error", "Password too short.", "error");
-                        displaySignupError("Password too short", "inputPassword");
+                        displayToast("Signup Error", "Last name must be between 3 and 50 characters.", "error");
+                        displaySignupError("Last name must be between 3 and 50 characters", "inputLastName");
                         break;
                     case "Error: 3":
-                        displayToast("Signup Error", "Passwords don't match.", "error");
-                        displaySignupError("Passwords don't match", "inputPasswordConfirm");
+                        displayToast("Signup Error", "First name must be between 3 and 50 characters.", "error");
+                        displaySignupError("First name must be between 3 and 50 characters", "inputFirstName");
                         break;
                     case "Error: 4":
+                        displayToast("Signup Error", "Email must be between 3 and 80 characters.", "error");
+                        displaySignupError("Email must be between 3 and 80 characters", "inputMail");
+                        break;
+                    case "Error: 5":
                         displayToast("Signup Error", "Invalid email format.", "error");
                         displaySignupError("Invalid email format", "inputMail");
                         break;
-                    case "Error: 5":
+                    case "Error: 6":
+                        displayToast("Signup Error", "Password must be between 7 and 99 characters.", "error");
+                        displaySignupError("Password must be between 7 and 99 characters", "inputPassword");
+                        break;
+                    case "Error: 7":
+                        displayToast("Signup Error", "Passwords don't match.", "error");
+                        displaySignupError("Passwords don't match", "inputPasswordConfirm");
+                        break;
+                    case "Error: 8":
                         displayToast("Signup Error", "Email already in use.", "error");
                         displaySignupError("Email already in use", "inputMail");
                         break;

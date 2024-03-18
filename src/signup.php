@@ -16,24 +16,39 @@ if (empty($lastName) || empty($mail) || empty($password) || empty($passwordConfi
     exit();
 }
 
-if (strlen($password) < 7) {
+if (strlen($lastName) < 3 || strlen($lastName) > 50) {
     echo 'Error: 2';
     exit();
 }
 
-if ($password !== $passwordConfirm) {
+if (strlen($firstName) < 3 || strlen($firstName) > 50) {
     echo 'Error: 3';
     exit();
 }
 
-if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+if (strlen($mail) < 3 || strlen($mail) > 80) {
     echo 'Error: 4';
+    exit();
+}
+
+if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+    echo 'Error: 5';
+    exit();
+}
+
+if (strlen($password) < 7 || strlen($password) > 99) {
+    echo 'Error: 6';
+    exit();
+}
+
+if ($password !== $passwordConfirm) {
+    echo 'Error: 7';
     exit();
 }
 
 $userRepository = new UserRepository();
 if ($userRepository->getUserByMail($mail)) {
-    echo 'Error: 5';
+    echo 'Error: 8';
     exit();
 }
 
@@ -43,4 +58,5 @@ try {
     echo 'success';
 } catch (Exception $e) {
     echo $e->getMessage();
+    exit();
 }
