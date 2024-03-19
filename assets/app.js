@@ -26,13 +26,17 @@ function fetchCategories() {
                 categoriesElement.insertAdjacentHTML("beforeend", label);
 
                 const inputElement = document.querySelector(`#${inputId}`);
-                const labelElement = document.querySelector(`#${labelFor}`);
 
                 inputElement.addEventListener("change", function () {
                     if (inputElement.checked) {
-                        console.log(`Checked ${category.ID}`);
+                        taskCategories.push(category.ID);
+                        console.log(taskCategories);
                     } else {
-                        console.log('Not checked ' + category.ID);
+                        const index = taskCategories.indexOf(category.ID);
+                        if (index > -1) {
+                            taskCategories.splice(index, 1);
+                            console.log(taskCategories);
+                        }
                     }
                 });
             });
@@ -44,4 +48,49 @@ function checkTaskForm () {
     const description = document.querySelector("#taskDescription").value;
     const dueDate = document.querySelector("#taskDueDate").value;
     const priority = document.querySelector("#taskPriority").value;
+
+    if (title.length < 3 || title.length > 50) {
+        displaySignupError("Title must be between 3 and 50 characters long.", "taskTitle");
+        return false;
+    }
+
+    if (description.length < 3 || description.length > 50) {
+        displaySignupError("Description must be between 3 and 50 characters long.", "taskDescription");
+        return false;
+    }
+
+    return true;
+}
+
+function addTask() {
+    if(!checkTaskForm()) {
+        return;
+    } else {
+        fetch("/src/addTask.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: document.querySelector("#taskTitle").value,
+                description: document.querySelector("#taskDescription").value,
+                dueDate: document.querySelector("#taskDueDate").value,
+                priority: document.querySelector("#taskPriority").value,
+                categories: taskCategories
+            }),
+        })
+            .then((response) => {
+                if (!response.ok || response.status !== 200) {
+                    throw new Error("Backend response was not ok.");
+                } else {
+                    return response.text();
+                }
+            })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    }
 }

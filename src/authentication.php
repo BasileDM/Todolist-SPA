@@ -32,6 +32,7 @@ if (!empty($request->email) && !empty($request->password)) {
     if ($passCheckResult) {
         $_SESSION['connected'] = true;
         $_SESSION['user'] = $user->MAIL;
+        $_SESSION['id'] = $user->ID;
 
         header('Content-Type: application/json');
         echo json_encode(true);

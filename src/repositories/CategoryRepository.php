@@ -18,4 +18,12 @@ class CategoryRepository {
         return $categories;
     }
 
+    public function getById($id) {
+        $sql = "SELECT * FROM todolist_categories WHERE id = :id";
+        $statement = $this->dbConnection->prepare($sql);
+        $statement->execute([':id' => $id]);
+        $category = $statement->fetch(\PDO::FETCH_OBJ);
+        return $category;
+    }
+
 }

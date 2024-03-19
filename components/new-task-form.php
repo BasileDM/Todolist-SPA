@@ -22,9 +22,9 @@
             <div class="mb-3">
                 <label for="taskPriority" class="form-label">Priority</label>
                 <select class="form-control" id="taskPriority" data-bs-theme="dark">
-                    <option>Low</option>
-                    <option>Medium</option>
-                    <option>High</option>
+                    <option>Normal</option>
+                    <option>Important</option>
+                    <option>Urgent</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -34,6 +34,6 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-success">Add task</button>
+        <button type="button" class="btn btn-success" onclick="addTask()">Add task</button>
     </div>
 </div>
