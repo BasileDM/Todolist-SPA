@@ -9,10 +9,17 @@ function fetchCategories() {
             if (!response.ok) {
                 throw new Error("Categories not found.");
             } else {
-                return response.text();
+                return response.json();
             }
         })
         .then((data) => {
-            document.getElementById("categories").innerHTML = data;
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+                const category = data[i];
+                const option = document.createElement("option");
+                option.textContent = category.NAME;
+                const categoriesElement = document.querySelector("#taskCategory");
+                categoriesElement.appendChild(option);
+            }
         });
 }

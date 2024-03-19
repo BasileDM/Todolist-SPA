@@ -29,11 +29,7 @@
             </div>
             <div class="mb-3">
                 <label for="taskCategory" class="form-label">Category</label>
-                <select class="form-control" id="taskCategory" data-bs-theme="dark">
-                    <option>Low</option>
-                    <option>Medium</option>
-                    <option>High</option>
-                </select>
+                <select class="form-control" id="taskCategory" data-bs-theme="dark"></select>
             </div>
         </div>
         <button type="submit" class="btn btn-success">Add task</button>
