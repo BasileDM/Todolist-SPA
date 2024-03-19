@@ -30,6 +30,11 @@ CREATE TABLE todolist_priorities(
 	,CONSTRAINT PK_todolist_priorities PRIMARY KEY (ID)
 )ENGINE=InnoDB;
 
+INSERT INTO `todolist_priorities` (`ID`, `NAME`) VALUES
+(1, 'Normal'),
+(2, 'Important'),
+(3, 'Urgent');
+
 
 #------------------------------------------------------------
 # Table: Task
@@ -58,6 +63,14 @@ CREATE TABLE todolist_categories(
         NAME Varchar (30) NOT NULL
 	,CONSTRAINT PK_todolist_categories PRIMARY KEY (ID)
 )ENGINE=InnoDB;
+
+INSERT INTO `todolist_categories` (`ID`, `NAME`) VALUES
+(1, 'Personal'),
+(2, 'Work'),
+(3, 'Family'),
+(4, 'Friends'),
+(5, 'Study'),
+(6, 'Other');
 
 
 #------------------------------------------------------------
