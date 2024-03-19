@@ -1,3 +1,5 @@
+let taskCategories = [];
+
 function fetchCategories() {
     fetch("./../src/getCategories.php", {
         method: "GET",
@@ -13,14 +15,33 @@ function fetchCategories() {
             }
         })
         .then((data) => {
-            console.log(data);
-            for (let i = 0; i < data.length; i++) {
-                const category = data[i];
-                let input = `<input type="checkbox" class="btn-check" id="btn-check-${category.ID}" autocomplete="off">`;
-                let label = `<label class="btn" for="btn-check-${category.ID}">${category.NAME}</label>`;
-                const categoriesElement = document.querySelector("#taskCategory");
-                categoriesElement.innerHTML += input;
-                categoriesElement.innerHTML += label;
-            }
-        });
+            const categoriesElement = document.querySelector("#taskCategory");
+            categoriesElement.innerHTML = "";
+            data.forEach(category => {
+                const inputId = `btn-check-${category.ID}`;
+                const labelFor = `btn-check-${category.ID}`;
+                const input = `<input type="checkbox" class="btn-check" id="${inputId}" autocomplete="off">`;
+                const label = `<label class="btn" for="${labelFor}">${category.NAME}</label>`;
+                categoriesElement.insertAdjacentHTML("beforeend", input);
+                categoriesElement.insertAdjacentHTML("beforeend", label);
+
+                const inputElement = document.querySelector(`#${inputId}`);
+                const labelElement = document.querySelector(`#${labelFor}`);
+
+                inputElement.addEventListener("change", function () {
+                    if (inputElement.checked) {
+                        console.log(`Checked ${category.ID}`);
+                    } else {
+                        console.log('Not checked ' + category.ID);
+                    }
+                });
+            });
+        })
+}
+
+function checkTaskForm () {
+    const title = document.querySelector("#taskTitle").value;
+    const description = document.querySelector("#taskDescription").value;
+    const dueDate = document.querySelector("#taskDueDate").value;
+    const priority = document.querySelector("#taskPriority").value;
 }

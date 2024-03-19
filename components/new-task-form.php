@@ -30,10 +30,10 @@
             <div class="mb-3">
                 <label for="taskCategory" class="form-label">Categories</label>
                 <div class="mb-3 card-group flex-row flex-wrap" id="taskCategory">
-                    <!-- Here will be dynamically added categories in app.js -->
+                    <!-- Here will be dynamically added categories -->
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-success">Add task</button>
+        <button type="button" class="btn btn-success">Add task</button>
     </div>
 </div>
