@@ -11,7 +11,6 @@ require_once __DIR__ . '/classes/Database.php';
 $request = json_decode(file_get_contents('php://input'));
 
 $priority = $request->priority;
-
 $prioRepo = new PriorityRepository();
 $priority = $prioRepo->getPriorityByName($priority);
 
@@ -27,13 +26,15 @@ $description = htmlspecialchars($request->description);
 $dueDate = $request->dueDate;
 $id_user = $_SESSION['id'];
 $id_priority = $priority->ID;
+$categories = $request->categories;
 
-$task = new Task($title, $description, $dueDate, $id_user, $id_priority);
+$task = new Task($title, $description, $dueDate, $id_user, $id_priority, $categories);
 
 try {
     $taskRepo = new TaskRepository();
     $taskRepo->create($task);
 } catch (\Exception $e) {
     echo $e->getMessage();
+    die();
 }
 ?>

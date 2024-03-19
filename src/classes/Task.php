@@ -6,13 +6,15 @@ final class Task{
     private $due_date;
     private $id_user;
     private $id_priority;
+    private $categories;
 
-    public function __construct($title, $description, $due_date, $id_user, $id_priority) {
+    public function __construct($title, $description, $due_date, $id_user, $id_priority, $categories) {
         $this->title = $title;
         $this->description = $description;
         $this->due_date = $due_date;
         $this->id_user = $id_user;
         $this->id_priority = $id_priority;
+        $this->categories = $categories;
     }
 
     public function getTitle() {
@@ -53,5 +55,13 @@ final class Task{
 
     public function setIdPriority($id_priority) {
         $this->id_priority = $id_priority;
+    }
+
+    public function getCategories() {
+        return $this->categories;
+    }
+
+    public function setCategories($categories) {
+        $this->categories = $categories;
     }
 }
