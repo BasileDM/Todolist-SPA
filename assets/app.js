@@ -16,10 +16,11 @@ function fetchCategories() {
             console.log(data);
             for (let i = 0; i < data.length; i++) {
                 const category = data[i];
-                const option = document.createElement("option");
-                option.textContent = category.NAME;
+                let input = `<input type="checkbox" class="btn-check" id="btn-check-${category.ID}" autocomplete="off">`;
+                let label = `<label class="btn" for="btn-check-${category.ID}">${category.NAME}</label>`;
                 const categoriesElement = document.querySelector("#taskCategory");
-                categoriesElement.appendChild(option);
+                categoriesElement.innerHTML += input;
+                categoriesElement.innerHTML += label;
             }
         });
 }

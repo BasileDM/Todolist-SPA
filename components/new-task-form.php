@@ -14,7 +14,7 @@
             <label for="taskDescription" class="form-label">Description</label>
             <input type="text" class="form-control" id="taskDescription" placeholder="Task description here..." data-bs-theme="light">
         </div>
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row flex-wrap">
             <div class="mb-3">
                 <label for="taskDueDate" class="form-label">Due date</label>
                 <input type="date" class="form-control" id="taskDueDate" data-bs-theme="dark">
@@ -28,8 +28,10 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="taskCategory" class="form-label">Category</label>
-                <select class="form-control" id="taskCategory" data-bs-theme="dark"></select>
+                <label for="taskCategory" class="form-label">Categories</label>
+                <div class="mb-3 card-group flex-row flex-wrap" id="taskCategory">
+                    <!-- Here will be dynamically added categories in app.js -->
+                </div>
             </div>
         </div>
         <button type="submit" class="btn btn-success">Add task</button>
