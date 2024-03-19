@@ -24,10 +24,12 @@ session_start();
     <script src="/assets/display.js"></script>
     <script src="/assets/auth.js"></script>
     <script src="/assets/signup-form.js"></script>
+    <script src="/assets/app.js"></script>
 </body>
 
 <?php 
 require_once 'src/init.php';
 ?>
+
 
 </html>

@@ -35,7 +35,6 @@ function displayPage(page) {
         })
         .then((data) => {
             mainElement.innerHTML = data;
-            mainElement.insertAdjacentHTML("beforeend", "<script src='/assets/form-checker.js'></script>");
         });
 }
 

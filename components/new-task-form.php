@@ -1,5 +1,5 @@
 <p class="d-inline-flex gap-1">
-    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <button onclick="fetchCategories()" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Add a new task
     </button>
 </p>
@@ -22,6 +22,14 @@
             <div class="mb-3">
                 <label for="taskPriority" class="form-label">Priority</label>
                 <select class="form-control" id="taskPriority" data-bs-theme="dark">
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="taskCategory" class="form-label">Category</label>
+                <select class="form-control" id="taskCategory" data-bs-theme="dark">
                     <option>Low</option>
                     <option>Medium</option>
                     <option>High</option>
