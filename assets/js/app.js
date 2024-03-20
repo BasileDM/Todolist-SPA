@@ -100,3 +100,4 @@ function addTask() {
 window.onload = function () {
     taskCategories = [];
 }
+
