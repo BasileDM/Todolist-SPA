@@ -1,6 +1,7 @@
 let taskCategories = [];
 
 function fetchCategories() {
+    taskCategories = [];
     fetch("./../src/getCategories.php", {
         method: "GET",
         headers: {
@@ -87,10 +88,15 @@ function addTask() {
                 }
             })
             .then((data) => {
-                console.log(data);
+                console.log(`Result of adding task : ${data}`);
+                
             })
             .catch((error) => {
                 console.error("Error:", error);
             });
     }
+}
+
+window.onload = function () {
+    taskCategories = [];
 }

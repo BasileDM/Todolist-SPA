@@ -20,12 +20,17 @@ class TaskRepository {
         ]);
         $sqlRelations = "INSERT INTO todolist_relation_tasks_categories (ID_CATEGORY, ID_TASK) VALUES (?, ?)";
         $statement = $this->dbConnection->prepare($sqlRelations);
+        
+        $lastTaskId = $this->dbConnection->lastInsertId();
+
         foreach ($newTask->getCategories() as $category) {
             $statement->execute([
                 $category,
-                $this->dbConnection->lastInsertId()
+                $lastTaskId
             ]);
         }
+        $newTask->setId($lastTaskId);
+        return $newTask;
     }
 
     // Get all tasks by ID_USER

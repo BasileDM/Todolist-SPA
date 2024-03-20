@@ -32,8 +32,7 @@ $task = new Task($title, $description, $dueDate, $id_user, $id_priority, $catego
 
 try {
     $taskRepo = new TaskRepository();
-    $taskRepo->create($task);
-    echo 'success';
+    print_r($taskRepo->create($task));
 } catch (\Exception $e) {
     echo $e->getMessage();
     die();
