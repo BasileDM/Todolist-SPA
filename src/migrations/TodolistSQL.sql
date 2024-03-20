@@ -78,10 +78,13 @@ INSERT INTO `todolist_categories` (`ID`, `NAME`) VALUES
 #------------------------------------------------------------
 
 CREATE TABLE todolist_relation_tasks_categories(
-        ID      Int NOT NULL ,
+        ID_CATEGORY Int NOT NULL ,
         ID_TASK Int NOT NULL
-	,CONSTRAINT PK_AVOIR PRIMARY KEY (ID,ID_TASK)
+	,CONSTRAINT PK_AVOIR PRIMARY KEY (ID_CATEGORY,ID_TASK)
 
-	,CONSTRAINT FK_AVOIR_todolist_categories FOREIGN KEY (ID) REFERENCES todolist_categories(ID)
+	,CONSTRAINT FK_AVOIR_todolist_categories FOREIGN KEY (ID_CATEGORY) REFERENCES todolist_categories(ID)
 	,CONSTRAINT FK_AVOIR_todolist_tasks0 FOREIGN KEY (ID_TASK) REFERENCES todolist_tasks(ID)
 )ENGINE=InnoDB;
+
+ALTER TABLE todolist_relation_tasks_categories
+ADD CONSTRAINT FK_AVOIR_todolist_categories FOREIGN KEY (ID_CATEGORY) REFERENCES todolist_categories(ID);
