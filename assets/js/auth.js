@@ -1,4 +1,4 @@
-import { displayPage, displayToast } from "./display.js";
+import { displayPage, displayToast, displayError } from "./display.js";
 
 function checkAuthStatus() {
     fetch("./../src/checkAuth.php", {

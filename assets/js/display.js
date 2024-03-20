@@ -1,7 +1,7 @@
 import {logout, login} from "./auth.js";
 import {addTask} from "./app.js";
 import {fetchCategories} from "./app.js";
-import { displayTaskList } from "./taskList.js";
+import {displayTaskList} from "./taskList.js";
 import {checkField, signup} from "./signup-form.js";
 
 export function displayPage(page) {
@@ -51,8 +51,19 @@ export function displayPage(page) {
                 document.getElementById("login-button").addEventListener("click", login);
                 document.getElementById("signup-button").addEventListener("click", signup);
                 document.getElementById("inputLastName").addEventListener("change", function () {
-                    console.log("hello");
                     checkField("inputLastName");
+                });
+                document.getElementById("inputFirstName").addEventListener("change", function () {
+                    checkField("inputFirstName");
+                });
+                document.getElementById("inputMail").addEventListener("change", function () {
+                    checkField("inputMail");
+                });
+                document.getElementById("inputPassword").addEventListener("change", function () {
+                    checkField("inputPassword");
+                });
+                document.getElementById("inputPasswordConfirm").addEventListener("change", function () {
+                    checkField("inputPasswordConfirm");
                 });
             }
         });

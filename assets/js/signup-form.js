@@ -1,4 +1,4 @@
-import { displaySignupError } from "./display.js";
+import { displaySignupError, displayToast } from "./display.js";
 
 let isLastNameValid = false;
 let isFirstNameValid = true;

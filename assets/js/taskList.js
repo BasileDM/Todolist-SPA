@@ -15,6 +15,7 @@ export function displayTaskList() {
             }
         })
         .then((data) => {
+            document.getElementById("taskContainer").innerHTML = "";
             data.forEach((task) => {
                 new Task(
                     task.ID,

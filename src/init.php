@@ -18,11 +18,11 @@ require_once __DIR__ . "/../config.php";
 if (DB_INITIALIZED == FALSE) {
     $db = new Database();
     if($db->initializeDb() == "Database initialization successful.") {
-        echo '<script type="text/javascript">displayToast("Database initialized", "A new database has been created.", "success");</script>';
+        echo '<script type="module">import { displayToast } from "./assets/js/display.js";displayToast("Database initialized", "A new database has been created.", "success");</script>';
         die();
         
     } else {
-        echo '<script type="text/javascript">displayToast("Database initialization failed", "A new database could not be created.", "error");</script>';
+        echo '<script type="module">import { displayToast } from "./assets/js/display.js";displayToast("Database initialization failed", "A new database could not be created.", "error");</script>';
         die();
     }
 }
