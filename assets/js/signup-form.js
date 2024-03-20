@@ -1,10 +1,12 @@
+import { displaySignupError } from "./display.js";
+
 let isLastNameValid = false;
 let isFirstNameValid = true;
 let isMailValid = false;
 let isPasswordValid = false;
 let isPasswordConfirmValid = false;
 
-function checkField(fieldId) {
+export function checkField(fieldId) {
     let fieldElement = document.getElementById(fieldId);
 
     // If is mail, undergo regex check
@@ -87,8 +89,9 @@ function validateField(fieldId) {
 
     // Remove invalid class and error message
     fieldElement.classList.remove("is-invalid");
-    if ((element = document.getElementById(`${fieldId}-error-ctn`))) {
-        element.remove();
+    let errorElement = document.getElementById(`${fieldId}-error-ctn`);
+    if (errorElement) {
+        errorElement.remove();
     }
 
     // Add valid class
@@ -160,7 +163,7 @@ function enableSignupButton() {
     signupButton.classList.remove("disabled");
 }
 
-function signup() {
+export function signup() {
     checkField("inputLastName");
     checkField("inputFirstName");
     checkField("inputMail");

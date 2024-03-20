@@ -1,4 +1,10 @@
-function displayPage(page) {
+import {logout, login} from "./auth.js";
+import {addTask} from "./app.js";
+import {fetchCategories} from "./app.js";
+import { displayTaskList } from "./taskList.js";
+import {checkField, signup} from "./signup-form.js";
+
+export function displayPage(page) {
     const mainElement = document.querySelector("main");
     const navbarContent = document.getElementById("navbarSupportedContent");
     let componentPath;
@@ -9,7 +15,8 @@ function displayPage(page) {
         case "app":
             componentPath = "./../components/app.php";
             navbarButtons =
-                '<button type="button" class="btn btn-secondary m-1 ms-auto" data-bs-toggle="modal" data-bs-target="#settings-modal"">Settings</button><button type="button" class="btn btn-danger m-1" onclick="logout()">Log out</button>';
+                `<button type="button" class="btn btn-secondary m-1 ms-auto" data-bs-toggle="modal" data-bs-target="#settings-modal"">Settings</button>
+                <button type="button" class="btn btn-danger m-1" id="log-out-button">Log out</button>`;
             break;
         case "home":
             componentPath = "./../components/signup-section.html";
@@ -35,10 +42,23 @@ function displayPage(page) {
         })
         .then((data) => {
             mainElement.innerHTML = data;
+            if (page === "app") {
+                document.getElementById("addTaskButton").addEventListener("click", addTask);
+                document.getElementById("log-out-button").addEventListener("click", logout);
+                document.getElementById("add-task-button").addEventListener("click", fetchCategories);
+                displayTaskList();
+            } else if (page === "home") {
+                document.getElementById("login-button").addEventListener("click", login);
+                document.getElementById("signup-button").addEventListener("click", signup);
+                document.getElementById("inputLastName").addEventListener("change", function () {
+                    console.log("hello");
+                    checkField("inputLastName");
+                });
+            }
         });
 }
 
-function displayError(message, errorContainer) {
+export function displayError(message, errorContainer) {
     let errorElement = document.getElementById(errorContainer);
     errorElement.classList.remove("d-none");
     errorElement.textContent = message;
@@ -49,7 +69,7 @@ function displayError(message, errorContainer) {
     })
 }
 
-function displaySignupError(message, fieldId) {
+export function displaySignupError(message, fieldId) {
     if (!document.getElementById(`${fieldId}-error-ctn`)) {
         const errorContainer = `<div class="alert alert-danger p-2 mt-2" role="alert" id="${fieldId}-error-ctn"></div>`;
         document.getElementById(fieldId).insertAdjacentHTML("afterend", errorContainer);
@@ -57,7 +77,7 @@ function displaySignupError(message, fieldId) {
     document.getElementById(`${fieldId}-error-ctn`).textContent = message;
 }
 
-function displayToast(title, message, type) {
+export function displayToast(title, message, type) {
     const toastElement = document.getElementById("toast");
     switch (type) {
         case "success":

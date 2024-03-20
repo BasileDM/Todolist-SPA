@@ -1,6 +1,8 @@
+import { displaySignupError } from "./display";
+import { displayTaskList } from "./taskList";
 let taskCategories = [];
 
-function fetchCategories() {
+export function fetchCategories() {
     taskCategories = [];
     fetch("./../src/getCategories.php", {
         method: "GET",
@@ -63,7 +65,7 @@ function checkTaskForm () {
     return true;
 }
 
-function addTask() {
+export function addTask() {
     if(!checkTaskForm()) {
         return;
     } else {
@@ -89,7 +91,7 @@ function addTask() {
             })
             .then((data) => {
                 console.log(`Result of adding task : ${data}`);
-                
+                displayTaskList();
             })
             .catch((error) => {
                 console.error("Error:", error);

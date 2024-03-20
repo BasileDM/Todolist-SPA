@@ -1,5 +1,5 @@
 <p class="d-inline-flex gap-1">
-    <button onclick="fetchCategories()" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <button id="add-task-button" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Add a new task
     </button>
 </p>
@@ -34,6 +34,6 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-success" onclick="addTask()">Add task</button>
+        <button type="button" class="btn btn-success" id="addTaskButton">Add task</button>
     </div>
 </div>

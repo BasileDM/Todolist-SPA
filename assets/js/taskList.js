@@ -1,10 +1,6 @@
 import { Task } from "./classes/Task";
 
-setTimeout(() => {
-    displayTaskList();
-}, 50);
-
-function displayTaskList() {
+export function displayTaskList() {
     fetch("/src/getTasks.php", {
         method: "GET",
         headers: {
@@ -19,8 +15,6 @@ function displayTaskList() {
             }
         })
         .then((data) => {
-            console.log(data);
-
             data.forEach((task) => {
                 new Task(
                     task.ID,

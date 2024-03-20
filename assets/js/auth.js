@@ -1,3 +1,5 @@
+import { displayPage, displayToast } from "./display.js";
+
 function checkAuthStatus() {
     fetch("./../src/checkAuth.php", {
         method: "GET",
@@ -21,7 +23,7 @@ function checkAuthStatus() {
         });
 }
 
-function login() {
+export function login() {
     const email = document.getElementById("inputLoginEmail").value;
     const password = document.getElementById("inputLoginPassword").value;
     const loginModalElement = document.getElementById("login-modal");
@@ -70,7 +72,7 @@ function login() {
         });
 }
 
-function logout() {
+export function logout() {
     fetch("/../src/disconnect.php", {
         method: "GET",
         headers: {
