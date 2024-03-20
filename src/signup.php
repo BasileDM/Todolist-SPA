@@ -21,7 +21,7 @@ if (strlen($lastName) < 3 || strlen($lastName) > 50) {
     exit();
 }
 
-if (strlen($firstName) < 3 || strlen($firstName) > 50) {
+if (!empty($firstName) && strlen($firstName) < 3 || strlen($firstName) > 50) {
     echo 'Error: 3';
     exit();
 }
