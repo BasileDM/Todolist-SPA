@@ -83,4 +83,13 @@ class TaskRepository {
         }
         return $task;
     }
+
+    public function deleteTask($id) {
+        $relationSql = "DELETE FROM todolist_relation_tasks_categories WHERE ID_TASK = ?";
+        $statement = $this->dbConnection->prepare($relationSql);
+        $statement->execute([$id]);
+        $sql = "DELETE FROM todolist_tasks WHERE ID = ?";
+        $statement = $this->dbConnection->prepare($sql);
+        $statement->execute([$id]);
+    }
 }

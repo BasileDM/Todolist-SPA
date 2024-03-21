@@ -5,8 +5,6 @@ require_once __DIR__ . '/repositories/CategoryRepository.php';
 require_once __DIR__ . '/repositories/PriorityRepository.php';
 require_once __DIR__ . '/classes/Task.php';
 
-
-
 $request = json_decode(file_get_contents('php://input'), true);
 
 $taskId = $request['id'];
@@ -21,6 +19,7 @@ foreach ($categories as $category) {
 $priorityRepo = new PriorityRepository();
 $newPriority = $priorityRepo->getPriorityByName($request['priority']);
 
+// Check if a field was edited and if not set to old value
 $taskName = $request['title'] ? $request['title'] : $oldTask->TITLE;
 $taskDescription = $request['description'] ? $request['description'] : $oldTask->DESCRIPTION;
 $taskDueDate = $request['dueDate'] ? $request['dueDate'] : $oldTask->DUE_DATE;
@@ -29,8 +28,7 @@ $taskPriority = $request['priority'] ? $newPriority->ID : $oldTask->ID_PRIORITY;
 $taskCategories = $request['categories'] ? $request['categories'] : $categoriesArray;
 
 $newTask = new Task($taskName, $taskDescription, $taskDueDate, $userId, $taskPriority, $taskCategories, $taskId);
-// print_r($newTask);
-// die();
+
 $result = $taskRepo->updateTask($newTask);
 
 print_r($result);

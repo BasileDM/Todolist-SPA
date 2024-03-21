@@ -224,6 +224,7 @@ export function saveChanges() {
             console.log(`Result of editing task : ${data}`);
             displayTaskList();
             displayToast("Task edited", "The task has been edited.", "success");
+            closeEditTaskModal();
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -233,6 +234,12 @@ export function saveChanges() {
 
 export function modifySelectedTaskId(taskId) {
     selectedTaskId = taskId;
+}
+
+function closeEditTaskModal() {
+    const editTaskModalElement = document.getElementById("task-details-modal");
+    const editTaskModal = bootstrap.Modal.getInstance(editTaskModalElement);
+    editTaskModal.hide();
 }
 
 window.onload = function () {

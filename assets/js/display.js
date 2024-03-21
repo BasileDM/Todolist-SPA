@@ -25,7 +25,7 @@ export function displayPage(page) {
     }
     navbarContent.innerHTML = navbarButtons;
 
-    // Fetch component for main
+    // Fetch component for <main>
     fetch(componentPath, {
         method: "GET",
         headers: {

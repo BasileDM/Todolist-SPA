@@ -44,3 +44,5 @@
         </div>
     </div>
 </div>
+
+<!-- Delete Task Modal -->

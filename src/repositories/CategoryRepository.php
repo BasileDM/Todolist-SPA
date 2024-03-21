@@ -33,5 +33,4 @@ class CategoryRepository {
         $categories = $statement->fetchAll(\PDO::FETCH_ASSOC);
         return $categories;
     }
-
 }
