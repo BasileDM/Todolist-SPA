@@ -1,4 +1,4 @@
-import { displaySignupError } from "./display";
+import { displaySignupError, displayToast } from "./display";
 import { displayTaskList } from "./taskList";
 let taskCategories = [];
 
@@ -92,9 +92,11 @@ export function addTask() {
             .then((data) => {
                 console.log(`Result of adding task : ${data}`);
                 displayTaskList();
+                displayToast("Task added", "A new task has been created.", "success");
             })
             .catch((error) => {
                 console.error("Error:", error);
+                displayToast("Error", "Something went wrong. Please try again later.", "error");
             });
     }
 }

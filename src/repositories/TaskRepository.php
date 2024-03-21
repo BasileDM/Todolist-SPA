@@ -36,7 +36,16 @@ class TaskRepository {
 
     // Get all tasks by ID_USER
     public function getTasksByUser($id_user) {
-        $sql = "SELECT * FROM todolist_tasks WHERE ID_USER = :id_user";
+        $sql = "SELECT *, todolist_tasks.ID AS TASK_ID,
+        GROUP_CONCAT(todolist_categories.NAME) AS CATEGORIES
+        FROM todolist_tasks 
+        LEFT JOIN todolist_relation_tasks_categories
+        ON todolist_tasks.ID = todolist_relation_tasks_categories.ID_TASK
+        LEFT JOIN todolist_categories
+        ON todolist_relation_tasks_categories.ID_CATEGORY = todolist_categories.ID
+        WHERE ID_USER = :id_user
+        GROUP BY todolist_tasks.ID";
+
         $statement = $this->dbConnection->prepare($sql);
         $statement->execute([':id_user' => $id_user]);
         $tasks = $statement->fetchAll(\PDO::FETCH_OBJ);

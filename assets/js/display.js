@@ -15,7 +15,7 @@ export function displayPage(page) {
         case "app":
             componentPath = "./../components/app.php";
             navbarButtons =
-                `<button type="button" class="btn btn-secondary m-1 ms-auto" data-bs-toggle="modal" data-bs-target="#settings-modal"">Settings</button>
+                `<button type="button" class="btn btn-secondary m-1 ms-auto" data-bs-toggle="modal" data-bs-target="#settings-modal">Settings</button>
                 <button type="button" class="btn btn-danger m-1" id="log-out-button">Log out</button>`;
             break;
         case "home":

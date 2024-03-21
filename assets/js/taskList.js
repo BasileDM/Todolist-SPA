@@ -17,8 +17,9 @@ export function displayTaskList() {
         .then((data) => {
             document.getElementById("taskContainer").innerHTML = "";
             data.forEach((task) => {
+                console.log(task);
                 new Task(
-                    task.ID,
+                    task.TASK_ID,
                     task.TITLE,
                     task.DESCRIPTION,
                     task.DUE_DATE,
