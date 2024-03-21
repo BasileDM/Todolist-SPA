@@ -2,6 +2,7 @@
 session_start();
 require_once __DIR__ . '/repositories/TaskRepository.php';
 require_once __DIR__ . '/repositories/CategoryRepository.php';
+require_once __DIR__ . '/repositories/PriorityRepository.php';
 require_once __DIR__ . '/classes/Task.php';
 
 
@@ -17,12 +18,14 @@ $categoriesArray = [];
 foreach ($categories as $category) {
     array_push($categoriesArray, $category['ID_CATEGORY']);
 };
+$priorityRepo = new PriorityRepository();
+$newPriority = $priorityRepo->getPriorityByName($request['priority']);
 
 $taskName = $request['title'] ? $request['title'] : $oldTask->TITLE;
 $taskDescription = $request['description'] ? $request['description'] : $oldTask->DESCRIPTION;
 $taskDueDate = $request['dueDate'] ? $request['dueDate'] : $oldTask->DUE_DATE;
 $userId = $_SESSION['id'];
-$taskPriority = $request['priority'] ? $request['priority'] : $oldTask->ID_PRIORITY;
+$taskPriority = $request['priority'] ? $newPriority->ID : $oldTask->ID_PRIORITY;
 $taskCategories = $request['categories'] ? $request['categories'] : $categoriesArray;
 
 $newTask = new Task($taskName, $taskDescription, $taskDueDate, $userId, $taskPriority, $taskCategories, $taskId);
