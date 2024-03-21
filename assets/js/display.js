@@ -1,6 +1,5 @@
 import {logout, login} from "./auth.js";
-import {addTask} from "./app.js";
-import {fetchCategories} from "./app.js";
+import {fetchCategories, editPriority, editDate, editCategory, addTask, editDescription, editTitle, saveChanges} from "./app.js";
 import {displayTaskList} from "./taskList.js";
 import {checkField, signup} from "./signup-form.js";
 
@@ -46,6 +45,12 @@ export function displayPage(page) {
                 document.getElementById("addTaskButton").addEventListener("click", addTask);
                 document.getElementById("log-out-button").addEventListener("click", logout);
                 document.getElementById("add-task-button").addEventListener("click", fetchCategories);
+                document.getElementById('edit-priority').addEventListener('click', editPriority);
+                document.getElementById('edit-dueDate').addEventListener('click', editDate);
+                document.getElementById('edit-categories').addEventListener('click', editCategory);
+                document.getElementById("edit-description").addEventListener("click", editDescription);
+                document.getElementById("edit-title").addEventListener("click", editTitle);
+                document.getElementById("save-changes-btn").addEventListener("click", saveChanges);
                 displayTaskList();
             } else if (page === "home") {
                 document.getElementById("login-button").addEventListener("click", login);

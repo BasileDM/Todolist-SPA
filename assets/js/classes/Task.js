@@ -1,3 +1,5 @@
+import { modifySelectedTaskId } from "./../app.js";
+
 export class Task {
     #id;
     #title;
@@ -36,6 +38,7 @@ export class Task {
         this.displayTask();
         document.getElementById(`task-${this.id}`).addEventListener("click", () => {
             this.modifyModal();
+            modifySelectedTaskId(this.id);
         })
     }
     //#region Getters and Setters
@@ -113,7 +116,7 @@ export class Task {
     }
 
     modifyModal() {
-        let modal = document.getElementById("task-details-modal");
+        let modal = document.getElementById("task-details-modal");     
         modal.querySelector("#taskDetailsLabel").textContent = `Task : ${this.title}`;
         modal.querySelector("#task-modal-priority").innerHTML = `Priority : ${this.priorityHtml}`;
         modal.querySelector("#task-modal-dueDate").textContent = `Due date : ${this.dueDate}`;

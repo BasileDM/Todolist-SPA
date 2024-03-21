@@ -51,4 +51,36 @@ class TaskRepository {
         $tasks = $statement->fetchAll(\PDO::FETCH_OBJ);
         return $tasks;
     }
+
+    public function getById($id) {
+        $sql = "SELECT * FROM todolist_tasks WHERE ID = ?";
+        $statement = $this->dbConnection->prepare($sql);
+        $statement->execute([$id]);
+        $task = $statement->fetch(\PDO::FETCH_OBJ);
+        return $task;
+    }
+
+    public function updateTask($task) {
+        $sql = "UPDATE todolist_tasks SET TITLE = ?, DESCRIPTION = ?, DUE_DATE = ?, ID_PRIORITY = ? WHERE ID = ?";
+        $statement = $this->dbConnection->prepare($sql);
+        $statement->execute([
+            $task->getTitle(),
+            $task->getDescription(),
+            $task->getDueDate(),
+            $task->getIdPriority(),
+            $task->getId()
+        ]);
+        $categoriesSQL = "DELETE FROM todolist_relation_tasks_categories WHERE ID_TASK = ?";
+        $statement = $this->dbConnection->prepare($categoriesSQL);
+        $statement->execute([$task->getId()]);
+        foreach ($task->getCategories() as $category) {
+            $sqlRelations = "INSERT INTO todolist_relation_tasks_categories (ID_CATEGORY, ID_TASK) VALUES (?, ?)";
+            $statement = $this->dbConnection->prepare($sqlRelations);
+            $statement->execute([
+                $category,
+                $task->getId()
+            ]);
+        }
+        return $task;
+    }
 }

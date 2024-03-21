@@ -26,4 +26,12 @@ class CategoryRepository {
         return $category;
     }
 
+    public function getByTaskId($taskId) {
+        $sql = "SELECT * FROM todolist_relation_tasks_categories WHERE ID_TASK = :taskId";
+        $statement = $this->dbConnection->prepare($sql);
+        $statement->execute([':taskId' => $taskId]);
+        $categories = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $categories;
+    }
+
 }
