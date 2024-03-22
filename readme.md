@@ -6,12 +6,13 @@ Edit the config.ini file at the root of the project with your database credentia
 
 ```php
 <?php
-        define('DB_HOST', 'localhost'); // Database path
+        define('DB_HOST', 'localhost'); // Database address
         define('DB_NAME', 'todolist'); // Replace 'todolist' with your database name
         define('DB_USER', 'todolist'); // Replace 'todolist' with your username
         define('DB_PASS', 'todolist'); // Replace 'todolist' with your password
         define('DB_INITIALIZED', FALSE); // Be sure this is set to FALSE when first initializing the project
 ```
+
 ## Default admin user
 
 The database is initialized with a default user for testing purposes :

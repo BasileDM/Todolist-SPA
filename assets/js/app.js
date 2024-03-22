@@ -242,6 +242,86 @@ function closeEditTaskModal() {
     editTaskModal.hide();
 }
 
+export function modifyAccountModal() {
+    const settingsModal = document.getElementById("settings-modal");
+
+    fetch("/../../src/getUser.php", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    })
+        .then((response) => {
+            if (!response.ok || response.status !== 200) {
+                throw new Error("Backend response was not ok.");
+            } else {
+                return response.json();
+            }
+        })
+        .then((data) => {
+            settingsModal.querySelector("#settings-modal-last-name").textContent = `Last name : ${data.LAST_NAME}`;
+            settingsModal.querySelector("#settings-modal-first-name").innerHTML = `First name : ${data.FIRST_NAME}`;
+            settingsModal.querySelector("#settings-modal-mail").textContent = `Email : ${data.MAIL}`;
+            settingsModal.querySelector("#settings-modal-password").textContent = `Change Password`;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+}
+
+export function editLastName() {
+    let titleField = document.getElementById("settings-modal-last-name");
+    titleField.innerHTML = `
+        <div class="mb-3">
+            <label for="lastNameEdit" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastNameEdit" placeholder="Last name here..." data-bs-theme="dark">
+        </div>`;
+}
+
+export function editFirstName() {
+    let titleField = document.getElementById("settings-modal-first-name");
+    titleField.innerHTML = `
+        <div class="mb-3">
+            <label for="firstNameEdit" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstNameEdit" placeholder="First name here..." data-bs-theme="dark">
+        </div>`;
+}
+
+export function editEmail() {
+    let titleField = document.getElementById("settings-modal-mail");
+    titleField.innerHTML = `
+        <div class="mb-3">
+            <label for="emailEdit" class="form-label">Email</label>
+            <input type="email" class="form-control" id="emailEdit" placeholder="Email here..." data-bs-theme="dark">
+        </div>`;
+}
+
+export function editPassword() {
+    let titleField = document.getElementById("settings-modal-password");
+    titleField.innerHTML = `
+        <div class="mb-3">
+            <label for="passwordEditCurrent" class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="passwordEditCurrent" placeholder="Current Password..." data-bs-theme="dark">
+        </div>
+        <div class="mb-3">
+            <label for="passwordEditNew" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="passwordEditNew" placeholder="New Password here..." data-bs-theme="dark">
+        </div>
+        <div class="mb-3">
+            <label for="passwordEditConfirm" class="form-label">Confirm password</label>
+            <input type="password" class="form-control" id="passwordEditConfirm" placeholder="Confirm new password..." data-bs-theme="dark">
+        </div>`;
+}
+
+export function saveAccountChanges() {
+    let lastNameValue = document.querySelector("#lastNameEdit") ? document.querySelector("#lastNameEdit").value : null;
+    let firstNameValue = document.querySelector("#firstNameEdit") ? document.querySelector("#firstNameEdit").value : null;
+    let emailValue = document.querySelector("#emailEdit") ? document.querySelector("#emailEdit").value : null;
+    let currentPassValue = document.querySelector("#passwordEditCurrent") ? document.querySelector("#passwordEditCurrent").value : null;
+    let newPassValue = document.querySelector("#passwordEditNew") ? document.querySelector("#passwordEditNew").value : null;
+    let confirmPassValue = document.querySelector("#passwordEditConfirm") ? document.querySelector("#passwordEditConfirm").value : null;
+}
+
 window.onload = function () {
     taskCategories = [];
 };
