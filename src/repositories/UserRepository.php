@@ -40,4 +40,13 @@ class UserRepository {
         ]);
         return $user;
     }
+
+    public function deleteUser($id) {
+        // the $sql request has to first delete all the relation task categories then all the task and then the user
+        $sql = "DELETE FROM todolist_task_categories WHERE USER_ID = ?; 
+                DELETE FROM todolist_tasks WHERE USER_ID = ?; 
+                DELETE FROM todolist_users WHERE ID = ?;";
+        $statement = $this->dbConnection->prepare($sql);
+        $statement->execute([$_SESSION['id']]);
+    }
 }

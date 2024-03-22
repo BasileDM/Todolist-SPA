@@ -1,6 +1,7 @@
 import {logout, login} from "./auth.js";
 import {fetchCategories, editPriority, editDate, editCategory, addTask, editDescription, editTitle, 
-    saveChanges, editLastName, editFirstName, editEmail, editPassword, modifyAccountModal, saveAccountChanges} from "./app.js";
+    saveChanges, editLastName, editFirstName, editEmail, editPassword, modifyAccountModal, 
+    saveAccountChanges, deleteAccount} from "./app.js";
 import {displayTaskList} from "./taskList.js";
 import {checkField, signup} from "./signup-form.js";
 
@@ -60,6 +61,7 @@ export function displayPage(page) {
                 document.getElementById("edit-mail").addEventListener("click", editEmail);
                 document.getElementById("edit-password").addEventListener("click", editPassword);
                 document.getElementById("save-account-changes").addEventListener("click", saveAccountChanges);
+                document.getElementById("delete-account-confirm-btn").addEventListener("click", deleteAccount);
                 // Task list
                 displayTaskList();
             } else if (page === "home") {

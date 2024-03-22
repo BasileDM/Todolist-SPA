@@ -425,6 +425,30 @@ export function saveAccountChanges() {
     settingsModalInstance.hide();
 }
 
+export function deleteAccount() {
+    fetch("../../src/deleteUser.php", {
+        method: "GET",
+        headers: {
+            "Content-Type": "x-www-form-urlencoded",
+        },
+    })
+        .then((response) => {
+            if (!response.ok || response.status !== 200) {
+                throw new Error("Backend response was not ok.");
+            } else {
+                return response.text();
+            }
+        })
+        .then((data) => {
+            if (data === "success") {
+                displayToast("Account deleted", "Your account has been deleted.", "success");
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+}
+
 window.onload = function () {
     taskCategories = [];
 };

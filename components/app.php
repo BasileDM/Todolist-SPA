@@ -74,8 +74,28 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <button id="delete-account" type="button" class="btn btn-danger me-auto" data-bs-toggle="modal" data-bs-target="#delete-account-confirm-modal">Delete account</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button id="save-account-changes" type="button" class="btn btn-success">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete account confirmation modal -->
+<div class="modal fade" id="delete-account-confirm-modal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteAccountModalLabel">Delete this account ?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this account ? This is irreversible !
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" id="delete-account-confirm-btn">Yes</button>
             </div>
         </div>
     </div>
