@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../classes/Database.php';
+require_once __DIR__ . '/TaskRepository.php';
 
 class UserRepository {
     private $dbConnection;
@@ -42,11 +43,17 @@ class UserRepository {
     }
 
     public function deleteUser($id) {
-        // the $sql request has to first delete all the relation task categories then all the task and then the user
-        $sql = "DELETE FROM todolist_task_categories WHERE USER_ID = ?; 
-                DELETE FROM todolist_tasks WHERE USER_ID = ?; 
-                DELETE FROM todolist_users WHERE ID = ?;";
+        // retrieve all tasks of the user
+        $statement = $this->dbConnection->prepare("SELECT * FROM todolist_tasks WHERE ID_USER = :id");
+        $statement->execute([':id' => $id]);
+        $tasks = $statement->fetchAll(PDO::FETCH_OBJ);
+        foreach ($tasks as $task) {
+            $taskRepository = new TaskRepository;
+            $taskRepository->deleteTask($task->ID);
+        }
+        $sql = "DELETE FROM todolist_users WHERE ID = :id";
         $statement = $this->dbConnection->prepare($sql);
-        $statement->execute([$_SESSION['id']]);
+        $statement->execute([':id' => $id]);
+        return 'success';
     }
 }

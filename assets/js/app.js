@@ -1,4 +1,4 @@
-import { displaySignupError, displayToast } from "./display";
+import { displayPage, displaySignupError, displayToast } from "./display";
 import { displayTaskList } from "./taskList";
 
 let selectedTaskId;
@@ -442,6 +442,9 @@ export function deleteAccount() {
         .then((data) => {
             if (data === "success") {
                 displayToast("Account deleted", "Your account has been deleted.", "success");
+                displayPage("home");
+            } else if (data === 'error') {
+                displayToast("Account not deleted", "Please try again later.", "error");
             }
         })
         .catch((error) => {
