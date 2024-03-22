@@ -41,11 +41,12 @@ export class Task {
             <button id="task-${this.id}" type="button" class="list-group-item list-group-item-action d-flex justify-content-between" aria-current="true"  
             data-bs-toggle="modal" data-bs-target="#task-details-modal">
                 <div id="task${this.id}-priority"></div>
-                <div id="task${this.id}-title">${this.title}</div>
+                <div id="task${this.id}-title" class="me-auto ms-2">${this.title}</div>
+                <div id="task${this.id}-date" class="ms-auto">${this.dueDate}</div>
             </button>
             <div class="form-check form-check-reverse form-check-inline" id="reverseCheck${this.id}-ctn">
                 <input class="form-check-input" type="checkbox" value="" id="reverseCheck${this.id}" data-bs-toggle="modal" data-bs-target="#delete-task-modal${this.id}">
-                <label class="form-check-label" for="reverseCheck${this.id}">Validate :</label>
+                <label class="form-check-label" for="reverseCheck${this.id}">Delete :</label>
             </div>
             `;
         if (this.priority == 1) {

@@ -254,9 +254,22 @@ export function saveChanges() {
             }
         })
         .then((data) => {
-            displayTaskList();
-            displayToast("Task edited", "The task has been edited.", "success");
-            closeEditTaskModal();
+            switch (data) {
+                case "Title must be between 3 and 50 characters":
+                    displayToast("Error", `${data}`, "error");
+                    break;
+                case "Description must be between 3 and 255 characters":
+                    displayToast("Error", `${data}`, "error");
+                    break;
+                case "success":
+                    displayTaskList();
+                    displayToast("Task edited", "The task has been edited.", "success");
+                    closeEditTaskModal();
+                    break;
+                default:
+                    displayToast("Error", "Something went wrong. Please try again later.", "error");
+                    break;
+            }
         })
         .catch((error) => {
             console.error("Error:", error);

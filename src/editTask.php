@@ -7,6 +7,20 @@ require_once __DIR__ . '/classes/Task.php';
 
 $request = json_decode(file_get_contents('php://input'), true);
 
+if(!empty($request['title'])) {
+    if(strlen($request['title']) < 3 || strlen($request['title']) > 50) {
+        echo "Title must be between 3 and 50 characters";
+        exit();
+    }
+}
+
+if(!empty($request['description'])) {
+    if(strlen($request['description']) < 3 || strlen($request['description']) > 255) {
+        echo "Description must be between 3 and 255 characters";
+        exit();
+    }
+}
+
 $taskId = $request['id'];
 $taskRepo = new TaskRepository();
 $oldTask = $taskRepo->getById($taskId);
@@ -31,4 +45,4 @@ $newTask = new Task($taskName, $taskDescription, $taskDueDate, $userId, $taskPri
 
 $result = $taskRepo->updateTask($newTask);
 
-print_r($result); // Do not remove
+echo 'success';
