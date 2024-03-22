@@ -3,6 +3,7 @@ import { displayTaskList } from "./taskList";
 
 let selectedTaskId;
 let taskCategories = [];
+let taskEditCategories = [];
 
 export function fetchCategories() {
     taskCategories = [];
@@ -92,7 +93,6 @@ export function addTask() {
                 }
             })
             .then((data) => {
-                console.log(`Result of adding task : ${data}`);
                 displayTaskList();
                 displayToast("Task added", "A new task has been created.", "success");
             })
@@ -141,7 +141,7 @@ export function editCategory() {
             <label for="taskCategoryEdit" class="form-label">Categories</label>
             <div class="mb-3 card-group flex-row flex-wrap" id="taskCategoryEdit"></div>
         </div>`;
-    
+
     taskCategories = [];
     fetch("./../src/getCategories.php", {
         method: "GET",
@@ -160,8 +160,8 @@ export function editCategory() {
             const categoriesElement = document.querySelector("#taskCategoryEdit");
             categoriesElement.innerHTML = "";
             data.forEach((category) => {
-                const inputId = `btn-check-${category.ID}`;
-                const labelFor = `btn-check-${category.ID}`;
+                const inputId = `btn-check-${category.ID + 100}`;
+                const labelFor = `btn-check-${category.ID + 100}`;
                 const input = `<input type="checkbox" class="btn-check" id="${inputId}" autocomplete="off">`;
                 const label = `<label class="btn" for="${labelFor}">${category.NAME}</label>`;
                 categoriesElement.insertAdjacentHTML("beforeend", input);
@@ -171,7 +171,7 @@ export function editCategory() {
 
                 inputElement.addEventListener("change", function () {
                     if (inputElement.checked) {
-                        taskCategories.push(category.ID);
+                        taskCategories = [...taskCategories, category.ID];
                         console.log(taskCategories);
                     } else {
                         const index = taskCategories.indexOf(category.ID);
@@ -195,10 +195,18 @@ export function editDescription() {
 }
 
 export function saveChanges() {
+    // Get form values if they exist or set them to null
     let titleValue = document.querySelector("#taskTitleEdit") ? document.querySelector("#taskTitleEdit").value : null;
-    let descriptionValue = document.querySelector("#taskDescriptionEdit") ? document.querySelector("#taskDescriptionEdit").value : null;
-    let dueDateValue = document.querySelector("#taskDueDateEdit") ? document.querySelector("#taskDueDateEdit").value : null;
-    let priorityValue = document.querySelector("#taskPriorityEdit") ? document.querySelector("#taskPriorityEdit").value : null;
+    let descriptionValue = document.querySelector("#taskDescriptionEdit")
+        ? document.querySelector("#taskDescriptionEdit").value
+        : null;
+    let dueDateValue = document.querySelector("#taskDueDateEdit")
+        ? document.querySelector("#taskDueDateEdit").value
+        : null;
+    let priorityValue = document.querySelector("#taskPriorityEdit")
+        ? document.querySelector("#taskPriorityEdit").value
+        : null;
+
     fetch("/../../src/editTask.php", {
         method: "POST",
         headers: {
@@ -221,7 +229,6 @@ export function saveChanges() {
             }
         })
         .then((data) => {
-            console.log(`Result of editing task : ${data}`);
             displayTaskList();
             displayToast("Task edited", "The task has been edited.", "success");
             closeEditTaskModal();
@@ -232,8 +239,58 @@ export function saveChanges() {
         });
 }
 
+export function restoreAccountModal() {
+    const originalHtml = `
+    <div class="modal fade" id="settings-modal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="settingsModalLabel">Account settings</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group list-group-flush" id="task-modal-details-ctn">
+                        <div class="list-group-item" id="task-modal-priority-ctn">
+                            <img id="edit-last-name" src="./../assets/imgs/edit.svg" alt="Edit icon" width="20px" height="20px" class="d-inline" style="cursor: pointer;">
+                            <p id="settings-modal-last-name" class="d-inline">Last name : </p>
+                        </div>
+                        <div class="list-group-item">
+                            <img id="edit-first-name" src="./../assets/imgs/edit.svg" alt="Edit icon" width="20px" height="20px" class="d-inline" style="cursor: pointer;">
+                            <p id="settings-modal-first-name" class="d-inline">First name : </p>
+                        </div>
+                        <div class="list-group-item">
+                            <img id="edit-mail" src="./../assets/imgs/edit.svg" alt="Edit icon" width="20px" height="20px" class="d-inline" style="cursor: pointer;">
+                            <p id="settings-modal-mail" class="d-inline">Mail : </p>
+                        </div>
+                        <div class="list-group-item">
+                            <img id="edit-password" src="./../assets/imgs/edit.svg" alt="Edit icon" width="20px" height="20px" class="d-inline" style="cursor: pointer;">
+                            <p id="settings-modal-password" class="d-inline">Change password</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="save-account-changes" type="button" class="btn btn-success">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+    let modal = document.getElementById("settings-modal");
+    modal.outerHTML = originalHtml;
+    modifyAccountModal();
+    document.getElementById("edit-last-name").addEventListener("click", editLastName);
+    document.getElementById("edit-first-name").addEventListener("click", editFirstName);
+    document.getElementById("edit-mail").addEventListener("click", editEmail);
+    document.getElementById("edit-password").addEventListener("click", editPassword);
+    document.getElementById("save-account-changes").addEventListener("click", saveAccountChanges);
+}
+
 export function modifySelectedTaskId(taskId) {
     selectedTaskId = taskId;
+}
+
+export function resetTaskCategories() {
+    taskCategories = [];
 }
 
 function closeEditTaskModal() {
@@ -315,11 +372,19 @@ export function editPassword() {
 
 export function saveAccountChanges() {
     let lastNameValue = document.querySelector("#lastNameEdit") ? document.querySelector("#lastNameEdit").value : null;
-    let firstNameValue = document.querySelector("#firstNameEdit") ? document.querySelector("#firstNameEdit").value : null;
+    let firstNameValue = document.querySelector("#firstNameEdit")
+        ? document.querySelector("#firstNameEdit").value
+        : null;
     let emailValue = document.querySelector("#emailEdit") ? document.querySelector("#emailEdit").value : null;
-    let currentPassValue = document.querySelector("#passwordEditCurrent") ? document.querySelector("#passwordEditCurrent").value : null;
-    let newPassValue = document.querySelector("#passwordEditNew") ? document.querySelector("#passwordEditNew").value : null;
-    let confirmPassValue = document.querySelector("#passwordEditConfirm") ? document.querySelector("#passwordEditConfirm").value : null;
+    let currentPassValue = document.querySelector("#passwordEditCurrent")
+        ? document.querySelector("#passwordEditCurrent").value
+        : null;
+    let newPassValue = document.querySelector("#passwordEditNew")
+        ? document.querySelector("#passwordEditNew").value
+        : null;
+    let confirmPassValue = document.querySelector("#passwordEditConfirm")
+        ? document.querySelector("#passwordEditConfirm").value
+        : null;
 
     fetch("/../../src/editUser.php", {
         method: "POST",
@@ -344,19 +409,20 @@ export function saveAccountChanges() {
         })
         .then((data) => {
             if (data === "success") {
-                console.log(`Result of editing account : ${data}`);
                 displayToast("Account edited", "Your account has been edited.", "success");
             } else if (data === "Wrong password") {
-                console.log(`Result of editing account : ${data}`);
                 displayToast("Account not edited", "Wrong password.", "error");
             } else if (data === "Passwords do not match") {
-                console.log(`Result of editing account : ${data}`);
                 displayToast("Account not edited", "Passwords don't match.", "error");
             }
         })
         .catch((error) => {
             console.error("Error:", error);
         });
+    const settingsModal =  document.getElementById("settings-modal");
+    const settingsModalInstance = bootstrap.Modal.getInstance(settingsModal);
+    restoreAccountModal();
+    settingsModalInstance.hide();
 }
 
 window.onload = function () {

@@ -1,5 +1,6 @@
 import { modifySelectedTaskId } from "./../app.js";
 import { displayToast } from "../display.js";
+import { resetTaskCategories } from "./../app.js";
 
 export class Task {
     #id;
@@ -56,6 +57,7 @@ export class Task {
         }
         this.displayTask();
         document.getElementById(`task-${this.id}`).addEventListener("click", () => {
+            resetTaskCategories();
             this.modifyModal();
             modifySelectedTaskId(this.id);
         });
@@ -148,9 +150,8 @@ export class Task {
     }
 
     displayDeleteConfirmation() {
-        let deleteModalElement = document.getElementById("delete-task-modal");
-        let deleteModal = bootstrap.Modal.getInstance(deleteModalElement);
-        deleteModalElement.show();
+        let modalElement = document.getElementById("delete-task-modal");
+        modalElement.show();
     }
 
     deleteTask() {
