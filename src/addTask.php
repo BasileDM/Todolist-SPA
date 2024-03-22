@@ -14,12 +14,25 @@ $priority = $request->priority;
 $prioRepo = new PriorityRepository();
 $priority = $prioRepo->getPriorityByName($priority);
 
-// $categories = $request->categories;
-// $catRepo = new CategoryRepository();
-// foreach ($categories as $category) {
-//     $category = $catRepo->getById($category);
-//     $id_category = $category->ID;
-// }
+if (empty($request->title) || strlen($request->title) < 3 || strlen($request->title) > 50) {
+    echo "Title length should be between 3 and 50 characters";
+    die();
+}
+
+if (strlen($request->description) < 3 || strlen($request->description) > 255) {
+    echo "Description length should be between 3 and 255 characters";
+    die();
+}
+
+if(empty($request->dueDate)) {
+    echo "A date is required";
+    die();
+}
+
+if(empty($request->priority)) {
+    echo "Please select a priority";
+    die();
+}
 
 $title = htmlspecialchars($request->title);
 $description = htmlspecialchars($request->description);
@@ -32,7 +45,8 @@ $task = new Task($title, $description, $dueDate, $id_user, $id_priority, $catego
 
 try {
     $taskRepo = new TaskRepository();
-    print_r($taskRepo->create($task));
+    $taskRepo->create($task);
+    echo 'success';
 } catch (\Exception $e) {
     echo $e->getMessage();
     die();

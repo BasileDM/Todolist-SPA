@@ -52,8 +52,6 @@ export function fetchCategories() {
 function checkTaskForm() {
     const title = document.querySelector("#taskTitle").value;
     const description = document.querySelector("#taskDescription").value;
-    const dueDate = document.querySelector("#taskDueDate").value;
-    const priority = document.querySelector("#taskPriority").value;
 
     if (title.length < 3 || title.length > 50) {
         displaySignupError("Title must be between 3 and 50 characters long.", "taskTitle");
@@ -63,6 +61,13 @@ function checkTaskForm() {
     if (description.length < 3 || description.length > 50) {
         displaySignupError("Description must be between 3 and 50 characters long.", "taskDescription");
         return false;
+    }
+    if (document.getElementById("taskTitle-error-ctn")) {
+        document.getElementById("taskTitle-error-ctn").classList.add("d-none");
+    }
+
+    if (document.getElementById("taskDescription-error-ctn")) {
+        document.getElementById("taskDescription-error-ctn").classList.add("d-none");
     }
 
     return true;
@@ -93,8 +98,28 @@ export function addTask() {
                 }
             })
             .then((data) => {
+                console.log(data);
+                switch (data) {
+                    case "Title length should be between 3 and 50 characters":
+                        displayToast("Error", `${data}`, "error");
+                        break;
+                    case "Description length should be between 3 and 255 characters":
+                        displayToast("Error", `${data}`, "error");
+                        break;
+                    case "A date is required":
+                        displayToast("Error", `${data}`, "error");
+                        break;
+                    case "Please select a priority":
+                        displayToast("Error", `${data}`, "error");
+                        break;
+                    case 'success':
+                        displayToast("Task added", "A new task has been created.", "success");
+                        break;
+                    default:
+                        displayToast("Error", "Something went wrong. Please try again later.", "error");
+                        break;
+                }
                 displayTaskList();
-                displayToast("Task added", "A new task has been created.", "success");
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -408,12 +433,21 @@ export function saveAccountChanges() {
             }
         })
         .then((data) => {
-            if (data === "success") {
+            if (data == "success") {
                 displayToast("Account edited", "Your account has been edited.", "success");
-            } else if (data === "Wrong password") {
+            } else if (data == "Wrong password") {
                 displayToast("Account not edited", "Wrong password.", "error");
-            } else if (data === "Passwords do not match") {
+            } else if (data == "Passwords do not match") {
                 displayToast("Account not edited", "Passwords don't match.", "error");
+            } else if (data == 'First name must be between 3 and 50 characters') {
+                displayToast("Account not edited", `${data}`, "error");
+            } else if (data == 'Last name must be between 3 and 50 characters') {
+                displayToast("Account not edited", `${data}`, "error");
+            } else if (data == 'Invalid email format') {
+                displayToast("Account not edited", `${data}`, "error");
+            } else {
+                console.log("why");
+                displayToast("An error occurred", "Please try again later.", "error");
             }
         })
         .catch((error) => {

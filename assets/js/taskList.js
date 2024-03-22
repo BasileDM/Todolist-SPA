@@ -16,16 +16,20 @@ export function displayTaskList() {
         })
         .then((data) => {
             document.getElementById("taskContainer").innerHTML = "";
-            data.forEach((task) => {
-                new Task(
-                    task.TASK_ID,
-                    task.TITLE,
-                    task.DESCRIPTION,
-                    task.DUE_DATE,
-                    task.ID_PRIORITY,
-                    task.CATEGORIES
-                );
-            });
+            if (data.length > 0) {
+                data.forEach((task) => {
+                    new Task(
+                        task.TASK_ID,
+                        task.TITLE,
+                        task.DESCRIPTION,
+                        task.DUE_DATE,
+                        task.ID_PRIORITY,
+                        task.CATEGORIES
+                    );
+                });
+            } else {
+                document.getElementById("taskContainer").innerHTML = "You have no tasks !";
+            }
             
         })
         .catch((error) => {
