@@ -1,6 +1,6 @@
 import {logout, login} from "./auth.js";
 import {fetchCategories, editPriority, editDate, editCategory, addTask, editDescription, editTitle, 
-    saveChanges, editLastName, editFirstName, editEmail, editPassword, modifyAccountModal} from "./app.js";
+    saveChanges, editLastName, editFirstName, editEmail, editPassword, modifyAccountModal, saveAccountChanges} from "./app.js";
 import {displayTaskList} from "./taskList.js";
 import {checkField, signup} from "./signup-form.js";
 

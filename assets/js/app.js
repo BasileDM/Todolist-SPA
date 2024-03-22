@@ -320,6 +320,43 @@ export function saveAccountChanges() {
     let currentPassValue = document.querySelector("#passwordEditCurrent") ? document.querySelector("#passwordEditCurrent").value : null;
     let newPassValue = document.querySelector("#passwordEditNew") ? document.querySelector("#passwordEditNew").value : null;
     let confirmPassValue = document.querySelector("#passwordEditConfirm") ? document.querySelector("#passwordEditConfirm").value : null;
+
+    fetch("/../../src/editUser.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            lastName: lastNameValue,
+            firstName: firstNameValue,
+            email: emailValue,
+            currentPass: currentPassValue,
+            newPass: newPassValue,
+            confirmPass: confirmPassValue,
+        }),
+    })
+        .then((response) => {
+            if (!response.ok || response.status !== 200) {
+                throw new Error("Backend response was not ok.");
+            } else {
+                return response.text();
+            }
+        })
+        .then((data) => {
+            if (data === "success") {
+                console.log(`Result of editing account : ${data}`);
+                displayToast("Account edited", "Your account has been edited.", "success");
+            } else if (data === "Wrong password") {
+                console.log(`Result of editing account : ${data}`);
+                displayToast("Account not edited", "Wrong password.", "error");
+            } else if (data === "Passwords do not match") {
+                console.log(`Result of editing account : ${data}`);
+                displayToast("Account not edited", "Passwords don't match.", "error");
+            }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 }
 
 window.onload = function () {

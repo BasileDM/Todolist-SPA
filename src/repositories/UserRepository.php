@@ -27,4 +27,17 @@ class UserRepository {
         $user = $statement->fetch(PDO::FETCH_OBJ);
         return $user;
     }
+
+    public function updateUser($user) {
+        $sql = "UPDATE todolist_users SET LAST_NAME = ?, FIRST_NAME = ?, PASSWORD = ?, MAIL = ? WHERE ID = ?";
+        $statement = $this->dbConnection->prepare($sql);
+        $statement->execute([
+            $user->getLastName(),
+            $user->getFirstName(),
+            $user->getPassword(),
+            $user->getMail(),
+            $user->getId()
+        ]);
+        return $user;
+    }
 }
