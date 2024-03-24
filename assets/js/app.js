@@ -260,6 +260,7 @@ export function saveChanges() {
                     displayTaskList();
                     displayToast("Task edited", "The task has been edited.", "success");
                     closeEditTaskModal();
+                    fetchCategories();
                     break;
                 default:
                     displayToast("Error", "Something went wrong. Please try again later.", "error");
