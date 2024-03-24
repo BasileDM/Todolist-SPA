@@ -36,12 +36,10 @@ export function fetchCategories() {
                 inputElement.addEventListener("change", function () {
                     if (inputElement.checked) {
                         taskCategories.push(category.ID);
-                        console.log(taskCategories);
                     } else {
                         const index = taskCategories.indexOf(category.ID);
                         if (index > -1) {
                             taskCategories.splice(index, 1);
-                            console.log(taskCategories);
                         }
                     }
                 });
@@ -98,7 +96,6 @@ export function addTask() {
                 }
             })
             .then((data) => {
-                console.log(data);
                 switch (data) {
                     case "Title length should be between 3 and 50 characters":
                         displayToast("Error", `${data}`, "error");
@@ -197,12 +194,10 @@ export function editCategory() {
                 inputElement.addEventListener("change", function () {
                     if (inputElement.checked) {
                         taskCategories = [...taskCategories, category.ID];
-                        console.log(taskCategories);
                     } else {
                         const index = taskCategories.indexOf(category.ID);
                         if (index > -1) {
                             taskCategories.splice(index, 1);
-                            console.log(taskCategories);
                         }
                     }
                 });
@@ -459,7 +454,6 @@ export function saveAccountChanges() {
             } else if (data == 'Invalid email format') {
                 displayToast("Account not edited", `${data}`, "error");
             } else {
-                console.log("why");
                 displayToast("An error occurred", "Please try again later.", "error");
             }
         })

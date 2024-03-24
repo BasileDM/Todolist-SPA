@@ -31,7 +31,7 @@ final class Database {
     public function doesUsersTableExist() {
         $sql = "SHOW TABLES LIKE 'todolist_users';";
         $return = $this->connection->query($sql)->fetchAll(\PDO::FETCH_OBJ);
-        if ($return && $return[0] == "todolist_users") {
+        if ($return && $return[0]->{'Tables_in_todolist (todolist_users)'} == "todolist_users") {
             return true;
         } else {
             return false;
@@ -40,6 +40,7 @@ final class Database {
 
     public function initializeDb() {
         if ($this->doesUsersTableExist()) {
+            $this->updateConfig();
             return "Database seems to be already initialized.";
             die();
         }

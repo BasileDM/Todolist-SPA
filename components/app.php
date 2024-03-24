@@ -1,14 +1,14 @@
-<div class="toolbar-button-container">
+<div class="m-2">
     <?php
-    include __DIR__ . '/new-task-form.php';
+    include __DIR__ . '/new-task-form.html';
     ?>
 </div>
-<div class="list-container">
+<div class="m-2">
     <?php
-    include __DIR__ . '/task-list.php';
+    include __DIR__ . '/task-list.html';
     ?>
 </div>
-<!-- Add task modal -->
+<!-- Edit task modal -->
 <div class="modal fade" id="task-details-modal" tabindex="-1" aria-labelledby="taskDetailsLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
         <div class="modal-content">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-task-details-modal">Close</button>
                 <button type="button" class="btn btn-primary" id="save-changes-btn">Save changes</button>
             </div>
         </div>

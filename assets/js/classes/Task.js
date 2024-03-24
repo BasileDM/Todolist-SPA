@@ -38,16 +38,17 @@ export class Task {
                 </div>
             </div>`;
         this.html = `
-            <button id="task-${this.id}" type="button" class="list-group-item list-group-item-action d-flex justify-content-between" aria-current="true"  
-            data-bs-toggle="modal" data-bs-target="#task-details-modal">
-                <div id="task${this.id}-priority"></div>
-                <div id="task${this.id}-title" class="me-auto ms-2">${this.title}</div>
-                <div id="task${this.id}-date" class="ms-auto">${this.dueDate}</div>
-            </button>
-            <div class="form-check form-check-reverse form-check-inline" id="reverseCheck${this.id}-ctn">
-                <input class="form-check-input" type="checkbox" value="" id="reverseCheck${this.id}" data-bs-toggle="modal" data-bs-target="#delete-task-modal${this.id}">
-                <label class="form-check-label" for="reverseCheck${this.id}">Delete :</label>
-            </div>
+                <div class="d-flex">
+                    <button id="task-${this.id}" type="button" class="d-inline list-group-item list-group-item-action d-flex justify-content-between" aria-current="true"  
+                    data-bs-toggle="modal" data-bs-target="#task-details-modal">
+                        <div id="task${this.id}-priority"></div>
+                        <div id="task${this.id}-title" class="me-auto ms-2">${this.title}</div>
+                        <div id="task${this.id}-date" class="ms-auto">${this.dueDate}</div>
+                    </button>
+                    <div class="d-inline ms-2 mt-2" id="reverseCheck${this.id}-ctn">
+                        <img id="reverseCheck${this.id}" src="./../assets/imgs/trash.svg" alt="Delete icon" width="20px" height="20px" class="d-inline" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#delete-task-modal${this.id}">
+                    </div>
+                </div>
             `;
         if (this.priority == 1) {
             this.priorityHtml = `<span class="badge text-bg-success">Normal</span>`;
@@ -173,7 +174,6 @@ export class Task {
                 }
             })
             .then((data) => {
-                console.log(`Result of deleting task : ${data}`);
                 document.getElementById(`task-${this.id}`).remove();
                 document.getElementById(`reverseCheck${this.id}-ctn`).remove();
                 displayToast("Task deleted", "The task has been deleted.", "success");

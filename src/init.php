@@ -20,6 +20,10 @@ if (DB_INITIALIZED == FALSE) {
     if($db->initializeDb() == "Database initialization successful.") {
         echo '<script type="module">import { displayToast } from "./assets/js/display.js";displayToast("Database initialized", "A new database has been created.", "success");</script>';
         die();
+
+    } elseif ($db->initializeDb() == "Database seems to be already initialized.") {
+        echo '<script type="module">import { displayToast } from "./assets/js/display.js";displayToast("Database detected", "The database seems to be already initialized.", "success");</script>';
+        die();
         
     } else {
         echo '<script type="module">import { displayToast } from "./assets/js/display.js";displayToast("Database initialization failed", "A new database could not be created.", "error");</script>';

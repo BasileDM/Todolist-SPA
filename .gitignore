@@ -1,2 +1,4 @@
 ressources/
 .vscode/
+config.php
+.gitignore

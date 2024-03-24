@@ -44,15 +44,18 @@ export function displayPage(page) {
         .then((data) => {
             mainElement.innerHTML = data;
             if (page === "app") {
-                // Add task modal
-                document.getElementById("addTaskButton").addEventListener("click", addTask);
+                // Nav bar
                 document.getElementById("log-out-button").addEventListener("click", logout);
-                document.getElementById("add-task-button").addEventListener("click", fetchCategories);
+                // Edit task modal
+                document.getElementById("close-task-details-modal").addEventListener("click", fetchCategories);
                 document.getElementById('edit-priority').addEventListener('click', editPriority);
                 document.getElementById('edit-dueDate').addEventListener('click', editDate);
                 document.getElementById('edit-categories').addEventListener('click', editCategory);
                 document.getElementById("edit-description").addEventListener("click", editDescription);
                 document.getElementById("edit-title").addEventListener("click", editTitle);
+                // Add task modal
+                document.getElementById("addTaskButton").addEventListener("click", addTask);
+                document.getElementById("add-task-button").addEventListener("click", fetchCategories);
                 document.getElementById("save-changes-btn").addEventListener("click", saveChanges);
                 // Settings modal
                 modifyAccountModal();
