@@ -2,7 +2,7 @@ import {logout, login} from "./auth.js";
 import {fetchCategories, editPriority, editDate, editCategory, addTask, editDescription, editTitle, 
     saveChanges, editLastName, editFirstName, editEmail, editPassword, modifyAccountModal, 
     saveAccountChanges, deleteAccount, restoreAccountModal} from "./app.js";
-import {displayTaskList} from "./taskList.js";
+import {displayTaskList} from "./task-list.js";
 import {checkField, signup} from "./signup-form.js";
 
 export function displayPage(page) {

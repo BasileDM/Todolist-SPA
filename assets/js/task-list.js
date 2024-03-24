@@ -1,4 +1,4 @@
-import { Task } from "./classes/Task";
+import { Task } from "./classes/Task.js";
 
 export function displayTaskList() {
     fetch("/src/getTasks.php", {

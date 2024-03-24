@@ -34,6 +34,8 @@ The database is initialized with a default user for testing purposes :
 1. Mail : admin@admin.admin
 2. Password : admin
 
+This user has 5 default tasks assigned to various categories upon migration.
+
 ### Useful files
 
 1. The LDM and CDM files are available at the root of the project.

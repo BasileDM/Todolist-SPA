@@ -1,5 +1,5 @@
-import { displayPage, displaySignupError, displayToast } from "./display";
-import { displayTaskList } from "./taskList";
+import { displayPage, displaySignupError, displayToast } from "./display.js";
+import { displayTaskList } from "./task-list.js";
 
 let selectedTaskId;
 let taskCategories = [];

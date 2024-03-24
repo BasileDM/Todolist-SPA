@@ -53,6 +53,13 @@ CREATE TABLE todolist_tasks(
 	,CONSTRAINT FK_todolist_tasks_todolist_priorities0 FOREIGN KEY (ID_PRIORITY) REFERENCES todolist_priorities(ID)
 )ENGINE=InnoDB;
 
+INSERT INTO `todolist_tasks` (`ID`, `TITLE`, `DESCRIPTION`, `DUE_DATE`, `ID_USER`, `ID_PRIORITY`) VALUES
+(1, 'Example Task 1', 'This is an example description', '2026-01-01', 1, 1),
+(2, 'Example Task 2', 'This is an example description', '2026-01-01', 1, 2),
+(3, 'Example Task 3', 'This is an example description', '2026-01-01', 1, 3),
+(4, 'Example Task 4', 'This is an example description', '2026-01-01', 1, 2),
+(5, 'Example Task 5', 'This is an example description', '2026-01-01', 1, 1);
+
 
 #------------------------------------------------------------
 # Table: Category
@@ -86,5 +93,16 @@ CREATE TABLE todolist_relation_tasks_categories(
 	,CONSTRAINT FK_AVOIR_todolist_tasks0 FOREIGN KEY (ID_TASK) REFERENCES todolist_tasks(ID)
 )ENGINE=InnoDB;
 
-ALTER TABLE todolist_relation_tasks_categories
-ADD CONSTRAINT FK_AVOIR_todolist_categories FOREIGN KEY (ID_CATEGORY) REFERENCES todolist_categories(ID);
+INSERT INTO `todolist_relation_tasks_categories` (`ID_CATEGORY`, `ID_TASK`) VALUES
+(1, 1),
+(4, 1),
+(5, 2),
+(6, 2),
+(1, 2),
+(6, 3),
+(5, 4),
+(2, 4),
+(1, 4),
+(3, 4),
+(3, 5),
+(5, 5);
