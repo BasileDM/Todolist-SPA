@@ -1,5 +1,12 @@
 ## Todolist SPA App
 
+### About the project
+This is a Single Page Application (SPA) Todolist, that allows you to :
+1. Create an account on a database, modify or delete it.
+2. Get your own task list, Create/Read/Update/Delete (CRUD) tasks with their prioriy, title, description, due date and categories.
+
+The main subjects of this project were AJAX, PDO, relational database conceptualization with Entity Relationship Diagrams (CDM, LDM) and manipulation with SQL queries.
+
 ### Config.ini
 
 Edit the config.ini file at the root of the project with your database credentials.
@@ -37,10 +44,3 @@ This app was made with :
 1. PHP 8.3.2
 2. MySQL 5.7 (Although it can work with PHP versions from 8.x)
 3. Bootstrap 5.3
-
-### About the project
-This is a Single Page Application (SPA) Todolist, that allows you to :
-1. Create an account on a database, modify or delete it.
-2. Get your own task list, Create/Read/Update/Delete (CRUD) tasks with their prioriy, title, description, due date and categories.
-
-The main subject of this project were AJAX, PDO, Entity relationship diagrams (CDM, LDM), mockups/wireframe and deployement.

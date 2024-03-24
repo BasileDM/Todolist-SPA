@@ -46,7 +46,9 @@ export class Task {
                         <div id="task${this.id}-date" class="ms-auto">${this.dueDate}</div>
                     </button>
                     <div class="d-inline ms-2 mt-2" id="reverseCheck${this.id}-ctn">
-                        <img id="reverseCheck${this.id}" src="./../assets/imgs/trash.svg" alt="Delete icon" width="20px" height="20px" class="d-inline" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#delete-task-modal${this.id}">
+                        <span data-bs-toggle="tooltip" data-bs-title="Delete this task">
+                            <img id="reverseCheck${this.id}" src="./../assets/imgs/trash.svg" alt="Delete icon" width="20px" height="20px" class="d-inline" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#delete-task-modal${this.id}">
+                        </span>
                     </div>
                 </div>
             `;
@@ -67,6 +69,10 @@ export class Task {
         document.getElementById(`delete-task-confirm-btn${this.id}`).addEventListener("click", () => {
             this.deleteTask();
         });
+        
+        // Tooltips
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     }
     //#region Getters and Setters
 
